@@ -2,14 +2,13 @@ html, body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
-  height: 100%;
+  min-height: 100%;
 }
 
 .main-content {
   margin-top: 90px;
   padding: 16px;
-  height: calc(100vh - 90px);
-  overflow-y: auto;
+  min-height: calc(100vh - 90px);
   overflow-x: hidden;
 }
 
@@ -17,8 +16,7 @@ html, body {
   .main-content {
     margin-top: 80px;
     padding: 12px;
-    height: calc(100vh - 80px);
-    overflow-y: auto;
+    min-height: calc(100vh - 80px);
     overflow-x: hidden;
   }
 }
@@ -27,8 +25,7 @@ html, body {
   .main-content {
     margin-top: 75px;
     padding: 12px;
-    height: calc(100vh - 75px);
-    overflow-y: auto;
+    min-height: calc(100vh - 75px);
     overflow-x: hidden;
   }
 }

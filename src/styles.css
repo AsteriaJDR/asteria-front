@@ -3,9 +3,44 @@
 /* Import Nerd Font */
 @import url('https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@master/css/nerd-fonts-generated.css');
 
-/* You can add global styles to this file, and also import other style files */
 html, body { 
   height: 100%; 
   margin: 0; 
-  font-family: "CaskaydiaMono Nerd Font", "Cascadia Mono", monospace, sans-serif; 
+  font-family: "CaskaydiaMono Nerd Font", "Cascadia Mono", monospace, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  border-radius: 10px;
+  border: 2px solid #f1f1f1;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #000000;
+}
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #000000 #f1f1f1;
+}
+
+body {
+  padding-top: 0;
 }

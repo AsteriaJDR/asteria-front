@@ -11,7 +11,7 @@ import {AuthService} from '../../../core/services/auth/auth-service';
     RouterLink
   ],
   templateUrl: './auth.html',
-  styleUrl: './auth.scss'
+  styleUrl: './auth.css'
 })
 export class Auth implements OnInit {
 

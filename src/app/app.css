@@ -1,4 +1,4 @@
-// Global styles to prevent unnecessary scrollbar
+/* Global styles to prevent unnecessary scrollbar */
 html, body {
   overflow-x: hidden;
   margin: 0;
@@ -14,7 +14,7 @@ html, body {
   overflow-x: hidden;
 }
 
-// For smaller screens
+/* For smaller screens */
 @media (max-width: 768px) {
   .main-content {
     margin-top: 80px;

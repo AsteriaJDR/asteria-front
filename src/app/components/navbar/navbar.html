@@ -1,56 +1,95 @@
-<nav class="navbar">
-  <!-- Logo/Brand -->
-  <div class="brand" routerLink="">
-    <lucide-icon [img]="Layers" class="brand-icon" [size]="24" [strokeWidth]="2"></lucide-icon>
+<nav class="navbar" role="navigation" aria-label="Navigation principale">
+  <a class="brand" routerLink="/" aria-label="Retour à l'accueil">
+    <img src="/asteria-logo.webp" alt="" class="brand-img" aria-hidden="true" />
+  </a>
+
+  <div class="nav-links" [class.mobile-open]="isMobileMenuOpen" role="menubar">
+    <a
+      class="nav-link"
+      routerLink="/community"
+      routerLinkActive="active"
+      role="menuitem"
+      (click)="closeMobileMenu()"
+    >
+      <lucide-icon
+        [img]="Users"
+        class="nav-icon"
+        [size]="18"
+        [strokeWidth]="2"
+        aria-hidden="true"
+      ></lucide-icon>
+      <span class="nav-text">La Communauté</span>
+    </a>
+    <a
+      class="nav-link"
+      routerLink="/tables"
+      routerLinkActive="active"
+      role="menuitem"
+      (click)="closeMobileMenu()"
+    >
+      <lucide-icon
+        [img]="Layers"
+        class="nav-icon"
+        [size]="18"
+        [strokeWidth]="2"
+        aria-hidden="true"
+      ></lucide-icon>
+      <span class="nav-text">Mes Tables</span>
+    </a>
+    <a
+      class="nav-link"
+      routerLink="/shop"
+      routerLinkActive="active"
+      role="menuitem"
+      (click)="closeMobileMenu()"
+    >
+      <lucide-icon
+        [img]="ShoppingCart"
+        class="nav-icon"
+        [size]="18"
+        [strokeWidth]="2"
+        aria-hidden="true"
+      ></lucide-icon>
+      <span class="nav-text">Magasin</span>
+    </a>
+    <a
+      class="nav-link"
+      routerLink="/rules"
+      routerLinkActive="active"
+      role="menuitem"
+      (click)="closeMobileMenu()"
+    >
+      <lucide-icon
+        [img]="NotebookPen"
+        class="nav-icon"
+        [size]="18"
+        [strokeWidth]="2"
+        aria-hidden="true"
+      ></lucide-icon>
+      <span class="nav-text">Règles</span>
+    </a>
   </div>
 
-  <!-- Navigation Links -->
-  <div class="nav-links" [class.mobile-open]="isMobileMenuOpen">
-    <button class="nav-link" routerLink="/tables" routerLinkActive="active" (click)="closeMobileMenu()">
-      <lucide-icon [img]="Layers" class="nav-icon" [size]="20" [strokeWidth]="2"></lucide-icon>
-      <span class="nav-text">My Tables</span>
-    </button>
-    <button class="nav-link" routerLink="/shop" routerLinkActive="active" (click)="closeMobileMenu()">
-      <lucide-icon [img]="ShoppingCart" class="nav-icon" [size]="20" [strokeWidth]="2"></lucide-icon>
-      <span class="nav-text">Shop</span>
-    </button>
-    <button class="nav-link" routerLink="/contacts" routerLinkActive="active" (click)="closeMobileMenu()">
-      <lucide-icon [img]="Users" class="nav-icon" [size]="20" [strokeWidth]="2"></lucide-icon>
-      <span class="nav-text">Contacts</span>
-    </button>
-
-    <!-- Mobile Login Button -->
-    <button class="nav-link mobile-only login-link" routerLink="/auth/signin" (click)="closeMobileMenu()">
-      <lucide-icon [img]="LogIn" class="nav-icon" [size]="20" [strokeWidth]="2"></lucide-icon>
-      <span class="nav-text">Sign In</span>
-    </button>
-    <button class="nav-link mobile-only signup-link" routerLink="/auth/signup" (click)="closeMobileMenu()">
-      <lucide-icon [img]="UserPlus" class="nav-icon" [size]="20" [strokeWidth]="2"></lucide-icon>
-      <span class="nav-text">Sign Up</span>
-    </button>
-  </div>
-
-  <!-- User Actions & Mobile Menu Toggle -->
   <div class="right-section">
-    <!-- User Actions -->
-    <div class="user-actions">
-      <button class="signin-btn" routerLink="/auth/signin">
-        <lucide-icon [img]="LogIn" class="nav-icon" [size]="18" [strokeWidth]="2"></lucide-icon>
-        <span class="btn-text">Sign In</span>
-      </button>
-      <button class="signup-btn" routerLink="/auth/signup">
-        <lucide-icon [img]="UserPlus" class="nav-icon" [size]="18" [strokeWidth]="2"></lucide-icon>
-        <span class="btn-text">Sign Up</span>
-      </button>
+    <div class="user-actions" role="group" aria-label="Actions utilisateur">
+      <a class="icon-btn" routerLink="/auth/signin" aria-label="Se connecter">
+        <lucide-icon [img]="User" [size]="20" [strokeWidth]="2" aria-hidden="true"></lucide-icon>
+      </a>
     </div>
 
-    <!-- Mobile Menu Toggle -->
-    <button class="mobile-menu-toggle" (click)="toggleMobileMenu()" [attr.aria-expanded]="isMobileMenuOpen">
-      @if (!isMobileMenuOpen) {
-        <lucide-icon [img]="Menu" class="menu-icon" [size]="26" [strokeWidth]="2"></lucide-icon>
-      } @else {
-        <lucide-icon [img]="X" class="close-icon" [size]="26" [strokeWidth]="2.5"></lucide-icon>
-      }
+    <button
+      class="mobile-toggle"
+      (click)="toggleMobileMenu()"
+      [attr.aria-expanded]="isMobileMenuOpen"
+      aria-controls="nav-links"
+      aria-label="Ouvrir le menu de navigation"
+    >
+      <lucide-icon
+        [img]="isMobileMenuOpen ? X : Menu"
+        [size]="22"
+        [strokeWidth]="2"
+        aria-hidden="true"
+      ></lucide-icon>
     </button>
   </div>
 </nav>

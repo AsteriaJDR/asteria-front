@@ -25,6 +25,9 @@ export class Tables {
     { id: 4, title: 'Campagne n°4', status: 'Ouverte', players: '1/6', image: '/table4.png' }
   ];
 
+  selectedCampaign: Campaign | null = null;
+  isModalOpen: boolean = false;
+
   createTable(): void {
     console.log('Créer une table');
   }
@@ -34,6 +37,11 @@ export class Tables {
   }
 
   openCampaign(c: Campaign): void {
-    console.log('Ouvrir campagne', c);
+    this.selectedCampaign = c;
+    this.isModalOpen = true;
+  }
+  closeModal(): void {
+    this.isModalOpen = false;
+    this.selectedCampaign = null;
   }
 }

@@ -1,0 +1,15 @@
+<div class="main">
+    <div class="image-and-icons">
+        <img src="/asteria-logo.webp" alt="Logo Asteria" class="class-image">
+        <div class="icons">
+            @for(class of classes; track class.id; let i = $index) {
+                <div class="hexagon" (click)="selectedClassIndex = i">
+                </div>
+            }
+        </div>
+    </div>
+    <div class="description">
+        <h1 class="class-name">{{ classes[selectedClassIndex].name }}</h1>
+        <p>{{ classes[selectedClassIndex].description }}</p>
+    </div>
+</div>

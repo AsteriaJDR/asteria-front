@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -24,11 +24,20 @@ import {
   templateUrl: './auth.html',
   styleUrl: './auth.css',
 })
-export class Auth {
+export class Auth implements OnInit, OnDestroy {
   private readonly fb = inject(FormBuilder);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly authService = inject(AuthService);
+  private readonly document = inject(DOCUMENT);
+
+  ngOnInit(): void {
+    this.document.body.classList.add('no-scroll');
+  }
+
+  ngOnDestroy(): void {
+    this.document.body.classList.remove('no-scroll');
+  }
 
   isSignup = this.route.snapshot.queryParams['mode'] === 'signup';
   showPassword = false;

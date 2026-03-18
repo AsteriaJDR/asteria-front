@@ -8,22 +8,22 @@ html, body {
   margin: 0; 
   font-family: "CaskaydiaMono Nerd Font", "Cascadia Mono", monospace, sans-serif;
   overflow-x: hidden;
+  background-color: #FFF0D7;
 }
 
-/* Custom Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #FFF0D7;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
   border-radius: 10px;
-  border: 2px solid #f1f1f1;
+  border: 2px solid #FFF0D7;
   transition: background 0.3s ease;
 }
 
@@ -35,12 +35,15 @@ html, body {
   background: #000000;
 }
 
-/* Firefox Scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #000000 #f1f1f1;
+  scrollbar-color: #000000 #FFF0D7;
 }
 
 body {
   padding-top: 0;
+}
+
+body.no-scroll {
+  overflow: hidden;
 }

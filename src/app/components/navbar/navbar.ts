@@ -2,7 +2,15 @@ import { Component, HostListener } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import {
   LucideAngularModule,
-  X, Menu, Layers, ShoppingCart, Users, LogIn, NotebookPen, User
+  X,
+  Menu,
+  Layers,
+  ShoppingCart,
+  Users,
+  LogIn,
+  NotebookPen,
+  User,
+  ScrollText
 } from 'lucide-angular';
 
 @Component({
@@ -21,7 +29,8 @@ export class NavbarComponent {
   readonly LogIn = LogIn;
   readonly NotebookPen = NotebookPen;
   readonly User = User;
-
+  readonly ScrollText = ScrollText;
+  
   isMobileMenuOpen = false;
 
   toggleMobileMenu(): void {

@@ -1,117 +1,186 @@
-<div class="auth-container">
-  <div class="auth-card">
-    <!-- Header -->
-    <div class="auth-header">
-      <div class="brand-icon">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-          <polyline points="2 17 12 22 22 17"></polyline>
-          <polyline points="2 12 12 17 22 12"></polyline>
-        </svg>
+<div class="auth-page">
+  <div class="auth-main">
+    <div class="background-container"></div>
+
+    <div class="auth-wrapper" [class.is-signup]="isSignup">
+      <div class="auth-card-viewport">
+        <div class="auth-card">
+
+          <div class="auth-header">
+            <h1 class="auth-title">{{ isSignup ? 'Inscription' : 'Connexion' }}</h1>
+            <p class="auth-subtitle">
+              @if (isSignup) {
+                S'inscrire pour découvrir le merveilleux monde d'Asteria
+              } @else {
+                Se connecter pour retourner dans les merveilles d'Asteria
+              }
+            </p>
+          </div>
+
+          @if (errorMessage) {
+            <div class="error-message" role="alert">
+              <lucide-icon [img]="icons.AlertCircle" size="16" />
+              <span>{{ errorMessage }}</span>
+            </div>
+          }
+
+          @if (isSignup) {
+            <form class="auth-form" (ngSubmit)="onSubmit()" [formGroup]="signupForm" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="signup-username">Pseudo</label>
+                <div class="input-wrapper">
+                  <input
+                    id="signup-username"
+                    type="text"
+                    class="form-input"
+                    placeholder="Entrez votre pseudo"
+                    formControlName="username"
+                    autocomplete="username"
+                  />
+                  <lucide-icon class="input-icon" [img]="icons.User" size="18" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="signup-email">Email</label>
+                <div class="input-wrapper">
+                  <input
+                    id="signup-email"
+                    type="email"
+                    class="form-input"
+                    placeholder="asteria@ynov.com"
+                    formControlName="email"
+                    autocomplete="email"
+                  />
+                  <lucide-icon class="input-icon" [img]="icons.AtSign" size="18" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="signup-password">Mot de passe</label>
+                <div class="input-wrapper">
+                  <input
+                    id="signup-password"
+                    [type]="showPassword ? 'text' : 'password'"
+                    class="form-input"
+                    [placeholder]="showPassword ? 'Entrez votre mot de passe' : '••••••••••••'"
+                    formControlName="password"
+                    autocomplete="new-password"
+                  />
+                  <button
+                    type="button"
+                    class="input-icon"
+                    (click)="showPassword = !showPassword"
+                    [attr.aria-label]="showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'"
+                  >
+                    <lucide-icon [img]="showPassword ? icons.EyeOff : icons.Eye" size="18" />
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="signup-confirm">Confirmer le mot de passe</label>
+                <div class="input-wrapper">
+                  <input
+                    id="signup-confirm"
+                    [type]="showConfirmPassword ? 'text' : 'password'"
+                    class="form-input"
+                    [placeholder]="showConfirmPassword ? 'Confirmez votre mot de passe' : '••••••••••••'"
+                    formControlName="confirmPassword"
+                    autocomplete="new-password"
+                  />
+                  <button
+                    type="button"
+                    class="input-icon"
+                    (click)="showConfirmPassword = !showConfirmPassword"
+                    [attr.aria-label]="showConfirmPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'"
+                  >
+                    <lucide-icon [img]="showConfirmPassword ? icons.EyeOff : icons.Eye" size="18" />
+                  </button>
+                </div>
+                @if (signupForm.get('confirmPassword')?.errors?.['required'] && signupForm.get('confirmPassword')?.touched) {
+                  <p class="field-error">La confirmation est requise</p>
+                }
+              </div>
+
+              <button type="submit" class="submit-btn" [disabled]="!canSubmit">
+                <span>Créer un compte</span>
+                <lucide-icon [img]="icons.ArrowRight" size="18" />
+              </button>
+            </form>
+          } @else {
+            <form class="auth-form" (ngSubmit)="onSubmit()" [formGroup]="signinForm" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="signin-email">Email</label>
+                <div class="input-wrapper">
+                  <input
+                    id="signin-email"
+                    type="email"
+                    class="form-input"
+                    placeholder="asteria@ynov.com"
+                    formControlName="email"
+                    autocomplete="email"
+                  />
+                  <lucide-icon class="input-icon" [img]="icons.AtSign" size="18" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="signin-password">Mot de passe</label>
+                <div class="input-wrapper">
+                  <input
+                    id="signin-password"
+                    [type]="showPassword ? 'text' : 'password'"
+                    class="form-input"
+                    [placeholder]="showPassword ? 'Entrez votre mot de passe' : '••••••••••••'"
+                    formControlName="password"
+                    autocomplete="current-password"
+                  />
+                  <button
+                    type="button"
+                    class="input-icon"
+                    (click)="showPassword = !showPassword"
+                    [attr.aria-label]="showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'"
+                  >
+                    <lucide-icon [img]="showPassword ? icons.EyeOff : icons.Eye" size="18" />
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <button type="button" class="stay-connected-btn" (click)="stayChecked = !stayChecked">
+                  <lucide-icon [img]="stayChecked ? icons.SquareCheckBig : icons.Square" size="20" />
+                  <span>Rester connecté</span>
+                </button>
+              </div>
+
+              <div class="forgot-password">
+                <a class="forgot-password-link" role="button" tabindex="0">Mot de passe oublié ?</a>
+              </div>
+
+              <button type="submit" class="submit-btn" [disabled]="!canSubmit">
+                <span>Se connecter</span>
+                <lucide-icon [img]="icons.ArrowRight" size="18" />
+              </button>
+            </form>
+          }
+
+        </div>
       </div>
-      <h1 class="auth-title">
-        @if (router.url === '/auth/signup') {
-          Create Account
-        } @else {
-          Welcome Back
-        }
-      </h1>
-      <p class="auth-subtitle">
-        @if (router.url === '/auth/signup') {
-          Sign up to get started with Asteria
-        } @else {
-          Sign in to continue to Asteria
-        }
-      </p>
     </div>
 
-    <!-- Error Message -->
-    @if (errorMessage) {
-      <div class="error-message">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="12" y1="8" x2="12" y2="12"></line>
-          <line x1="12" y1="16" x2="12.01" y2="16"></line>
-        </svg>
-        <span>{{ errorMessage }}</span>
-      </div>
-    }
-
-    <!-- Form -->
-    <form class="auth-form" (submit)="onSubmit()" [formGroup]="authFormGroup">
-      @if (router.url === '/auth/signup') {
-        <div class="form-group">
-          <label class="form-label">Username</label>
-          <div class="input-wrapper">
-            <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-            <input type="text" class="form-input" placeholder="Enter your username" formControlName="username">
-          </div>
-        </div>
+    <div class="auth-page-footer" [class.is-signup]="isSignup">
+      @if (isSignup) {
+        <span class="footer-text">
+          Vous avez déjà un compte ?
+          <button type="button" class="footer-link-btn" (click)="switchMode(false)">Se connecter</button>
+        </span>
+      } @else {
+        <span class="footer-text">
+          Pas encore de compte ?
+          <button type="button" class="footer-link-btn" (click)="switchMode(true)">S'inscrire</button>
+        </span>
       }
-
-      <div class="form-group">
-        <label class="form-label">Email</label>
-        <div class="input-wrapper">
-          <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="5" width="18" height="14" rx="2"></rect>
-            <polyline points="3 7 12 13 21 7"></polyline>
-          </svg>
-          <input type="email" class="form-input" placeholder="Enter your email" formControlName="email">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Password</label>
-        <div class="input-wrapper">
-          <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-          </svg>
-          <input type="password" class="form-input" placeholder="Enter your password" formControlName="password">
-        </div>
-      </div>
-
-      @if (router.url === '/auth/signup') {
-        <div class="form-group">
-          <label class="form-label">Confirm Password</label>
-          <div class="input-wrapper">
-            <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-            </svg>
-            <input type="password" class="form-input" placeholder="Confirm your password" formControlName="confirmPassword">
-          </div>
-          @if (authFormGroup.get('confirmPassword')?.errors?.['required'] && authFormGroup.get('confirmPassword')?.touched) {
-            <p class="field-error">Password confirmation is required</p>
-          }
-          @if (authFormGroup.get('confirmPassword')?.errors?.['passwordMismatch']) {
-            <p class="field-error">Passwords do not match</p>
-          }
-        </div>
-      }
-
-      <button type="submit" class="submit-btn" [disabled]="!enableSubmitButton()">
-        @if (router.url === '/auth/signup') {
-          <span>Create Account</span>
-        } @else {
-          <span>Sign In</span>
-        }
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 5 19 12 12 19"></polyline>
-        </svg>
-      </button>
-
-      <div class="auth-footer">
-        @if (router.url === '/auth/signup') {
-          <span class="footer-text">Already have an account? <a routerLink="/auth/signin" class="footer-link">Sign in</a></span>
-        } @else {
-          <span class="footer-text">Don't have an account? <a routerLink="/auth/signup" class="footer-link">Sign up</a></span>
-        }
-      </div>
-    </form>
+    </div>
   </div>
 </div>

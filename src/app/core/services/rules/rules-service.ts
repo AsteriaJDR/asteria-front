@@ -13,5 +13,13 @@ export class RulesService {
   getRules(): Observable<any> {
     return this.http.get<any>(`${this.RULES_API_URL}`, { withCredentials: true });
   }
+
+  getClasses(): Observable<any> {
+    return this.http.get<any>(`${this.RULES_API_URL}/classes`, { withCredentials: true });
+  }
+
+  getRaces(): Observable<any> {
+    return this.http.get<any>(`${this.RULES_API_URL}/races`, { withCredentials: true });
+  }
   
 }

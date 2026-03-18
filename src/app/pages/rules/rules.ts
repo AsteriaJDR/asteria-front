@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RulesService } from '../../core/services/rules-service';
+import { RulesService } from '../../core/services/rules/rules-service';
 
 @Component({
   selector: 'app-rules',

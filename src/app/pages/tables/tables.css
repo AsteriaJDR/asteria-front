@@ -206,6 +206,40 @@
   font-weight: bold;
 }
 
+.stories-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.story-item {
+  padding: 15px;
+  border: 1px solid #4a9d6f;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+
+.story-item:hover {
+  background-color: rgba(74, 157, 111, 0.1);
+}
+
+.story-item.selected {
+  background-color: #4a9d6f;
+  color: #000;
+}
+
+.modal-body.full-width {
+  grid-template-columns: 1fr;
+}
+
+.modal-body.full-width .modal-right {
+  width: 100%;
+}
+
+
 @media (max-width: 768px) {
   .modal-body {
     grid-template-columns: 1fr;

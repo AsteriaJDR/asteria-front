@@ -1,4 +1,3 @@
-<!-- src/app/pages/tables/tables.html -->
 <div class="tables-page">
   <div class="actions-row">
     <button type="button" class="action-pill create" (click)="createTable()" aria-label="Créer une table">Créer une table</button>
@@ -31,6 +30,30 @@
       <div class="no-campaigns">Aucune campagne disponible pour le moment.</div>
     </ng-template>
   </div>
+  <div class="modal-overlay" *ngIf="isCreateTableModalOpen" (click)="closeCreateTableModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeCreateTableModal()" aria-label="Fermer">✕</button>
+      <div class="modal-body full-width">
+        <div class="modal-right">
+          <h2>Sélectionner une histoire</h2>
+
+          <div class="stories-list">
+            <div *ngFor="let story of stories"
+                 class="story-item"
+                 [class.selected]="selectedStory?.id === story.id"
+                 (click)="selectedStory = story">
+              {{ story.title }}
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button class="modal-params-btn" (click)="closeCreateTableModal()">Annuler</button>
+            <button class="modal-play-btn" (click)="submitCreateTable()" [disabled]="!selectedStory">Créer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
   <div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()">
     <div class="modal-content" (click)="$event.stopPropagation()">
       <button class="modal-close" (click)="closeModal()" aria-label="Fermer">✕</button>

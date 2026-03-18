@@ -1,1 +1,34 @@
-<p>tables works!</p>
+<!-- src/app/pages/tables/tables.html -->
+<div class="tables-page">
+  <div class="actions-row">
+    <button type="button" class="action-pill create" (click)="createTable()" aria-label="Créer une table">Créer une table</button>
+    <button type="button" class="action-pill join" (click)="joinTable()" aria-label="Rejoindre une table">Rejoindre une table</button>
+  </div>
+
+  <div class="cards-grid">
+    <ng-container *ngIf="campaigns?.length; else noCampaigns">
+      <div
+        class="card"
+        *ngFor="let c of campaigns"
+        (click)="openCampaign(c)"
+        [style.background-image]="'url(' + c.image + ')'"
+        role="button"
+        tabindex="0"
+        (keydown.enter)="openCampaign(c)"
+        (keydown.space)="openCampaign(c)"
+      >
+        <div class="card-overlay">
+          <h3 class="card-title">{{ c.title }}</h3>
+          <div class="card-footer">
+            <span class="status">{{ c.status }}</span>
+            <span class="players">{{ c.players }}</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #noCampaigns>
+      <div class="no-campaigns">Aucune campagne disponible pour le moment.</div>
+    </ng-template>
+  </div>
+</div>

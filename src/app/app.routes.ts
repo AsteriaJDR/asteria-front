@@ -3,6 +3,7 @@ import {Home} from './pages/home/home';
 import {Auth} from './pages/auth/auth';
 import {Tables} from './pages/tables/tables';
 import {Contacts} from './pages/contacts/contacts';
+import {Rules} from './pages/rules/rules';
 
 export const routes: Routes = [
   {path: 'home', redirectTo: '', pathMatch: 'full'},

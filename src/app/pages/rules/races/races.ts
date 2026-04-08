@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ClassesOrRaces } from '../classes-or-races/classes-or-races';
 
 @Component({
-  selector: 'app-classes',
+  selector: 'app-races',
   imports: [ClassesOrRaces],
-  templateUrl: './classes.html',
-  styleUrl: './classes.css',
+  templateUrl: './races.html',
+  styleUrl: './races.css',
 })
-export class Classes {
+export class Races {
 
 }

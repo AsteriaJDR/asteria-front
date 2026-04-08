@@ -1,0 +1,17 @@
+<div class="main">
+    @if (classesOrRaces && classesOrRaces.length > 0) {
+        <div class="image-and-icons">
+            <img src="/asteria-logo.webp" alt="Logo Asteria" class="class-or-race-image">
+            <div class="icons">
+                @for(class of classesOrRaces; track class.id; let i = $index) {
+                    <div class="hexagon" (click)="selectedClassIndex = i">
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="description">
+            <h1 class="class-or-race-name">{{ classesOrRaces[selectedClassIndex].name }}</h1>
+            <p>{{ classesOrRaces[selectedClassIndex].description }}</p>
+        </div>
+    }
+</div>

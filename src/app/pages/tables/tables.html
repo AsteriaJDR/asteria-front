@@ -30,6 +30,30 @@
       <div class="no-campaigns">Aucune campagne disponible pour le moment.</div>
     </ng-template>
   </div>
+  <div class="modal-overlay" *ngIf="isCreateTableModalOpen" (click)="closeCreateTableModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeCreateTableModal()" aria-label="Fermer">✕</button>
+
+      <div *ngIf="createTableStep === 'selectStory'" class="modal-body full-width">
+        <div class="modal-right">
+          <h2>Sélectionner une histoire</h2>
+          <div class="stories-grid">
+            <div *ngFor="let story of stories"
+                 class="story-card"
+                 [class.selected]="selectedStory?.id === story.id"
+                 (click)="toggleStorySelection(story)">
+              <div class="story-card-image">
+                <div class="story-card-title">{{ story.title }}</div>
+              </div>
+              <div class="story-card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+            </div>
+          </div>
+          <div class="modal-actions">
+            <button class="modal-params-btn" (click)="closeCreateTableModal()">Annuler</button>
+            <button class="modal-play-btn" (click)="proceedToFormStep()" [disabled]="!selectedStory">Créer</button>
+          </div>
+        </div>
+      </div>
   <div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()">
     <div class="modal-content" (click)="$event.stopPropagation()">
       <button class="modal-close" (click)="closeModal()" aria-label="Fermer">✕</button>

@@ -158,3 +158,29 @@
       </div>
     </div>
   </div>
+  <div class="modal-overlay" *ngIf="isJoinTableModalOpen" (click)="closeJoinTableModal()">
+    <div class="modal-content join-table-modal" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeJoinTableModal()" aria-label="Fermer">✕</button>
+      <div class="modal-body full-width">
+        <div class="modal-right">
+          <h2>Rejoindre une table</h2>
+          <div class="form-group">
+            <label for="join-code">Entrez le code de la table</label>
+            <input
+              id="join-code"
+              type="text"
+              class="form-input"
+              [(ngModel)]="joinTableCode"
+              placeholder="Ex: 123456789"
+              (keyup.enter)="submitJoinTable()"
+            />
+          </div>
+          <div class="modal-actions">
+            <button class="modal-params-btn" (click)="closeJoinTableModal()">Annuler</button>
+            <button class="modal-play-btn" (click)="submitJoinTable()" [disabled]="!joinTableCode.trim()">Rejoindre</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

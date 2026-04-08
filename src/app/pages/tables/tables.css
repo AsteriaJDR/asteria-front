@@ -455,3 +455,8 @@
 .modal-play-btn:disabled:hover {
   background-color: #4a9d6f;
 }
+
+.join-table-modal {
+  max-width: 400px;
+}
+

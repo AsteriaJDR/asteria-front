@@ -38,9 +38,11 @@ export class Tables {
   selectedCampaign: Campaign | null = null;
   isModalOpen: boolean = false;
   isCreateTableModalOpen: boolean = false;
+  isJoinTableModalOpen: boolean = false;
   createTableStep: 'selectStory' | 'fillForm' = 'selectStory'; // Nouvelle propriété
   tableName: string = '';
   selectedStory: Story | null = null;
+  joinTableCode: string = '';
 
   // Propriétés pour le formulaire de création de table
   newTable = {
@@ -116,7 +118,21 @@ export class Tables {
   }
 
   joinTable(): void {
-    console.log('Rejoindre une table');
+    this.isJoinTableModalOpen = true;
+    this.joinTableCode = '';
+  }
+
+  closeJoinTableModal(): void {
+    this.isJoinTableModalOpen = false;
+    this.joinTableCode = '';
+  }
+
+  submitJoinTable(): void {
+    if (this.joinTableCode.trim()) {
+      console.log('Rejoindre la table avec le code:', this.joinTableCode);
+      // Ajouter la logique pour rejoindre la table avec le code
+      this.closeJoinTableModal();
+    }
   }
 
   openCampaign(c: Campaign): void {

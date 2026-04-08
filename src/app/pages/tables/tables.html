@@ -54,6 +54,82 @@
           </div>
         </div>
       </div>
+      <div *ngIf="createTableStep === 'fillForm'" class="modal-body full-width create-table-form">
+        <div class="modal-right">
+          <h2>Créer une nouvelle table</h2>
+          <div class="form-group">
+            <label for="table-title">Titre de la table</label>
+            <input
+              id="table-title"
+              type="text"
+              class="form-input"
+              [(ngModel)]="newTable.title"
+              placeholder="Entrez le titre de votre table"
+              maxlength="50"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="table-image">Image de la table</label>
+            <div class="image-upload-section">
+              <input
+                id="table-image"
+                type="file"
+                accept="image/*"
+                class="file-input"
+                (change)="onImageUpload($event)"
+              />
+              <div *ngIf="newTable.image" class="image-preview">
+                <img [src]="newTable.image" alt="Aperçu de l'image" />
+              </div>
+              <div *ngIf="!newTable.image" class="image-placeholder">
+                <p>Aucune image sélectionnée</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="max-players">Nombre de joueurs maximum</label>
+            <select
+              id="max-players"
+              class="form-select"
+              [(ngModel)]="newTable.maxPlayers"
+            >
+              <option [value]="2">2 joueurs</option>
+              <option [value]="3">3 joueurs</option>
+              <option [value]="4">4 joueurs</option>
+              <option [value]="5">5 joueurs</option>
+              <option [value]="6">6 joueurs</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="table-description">Description</label>
+            <textarea
+              id="table-description"
+              class="form-textarea"
+              [(ngModel)]="newTable.description"
+              placeholder="Décrivez votre table..."
+              rows="5"
+              maxlength="500"
+            ></textarea>
+            <span class="char-count">{{ newTable.description.length }}/500</span>
+          </div>
+
+          <div class="modal-actions">
+            <button class="modal-params-btn" (click)="backToStorySelection()">Retour</button>
+            <button
+              class="modal-play-btn"
+              (click)="submitCreateTable()"
+              [disabled]="!newTable.title || !newTable.description"
+            >
+              Créer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()">
     <div class="modal-content" (click)="$event.stopPropagation()">
       <button class="modal-close" (click)="closeModal()" aria-label="Fermer">✕</button>

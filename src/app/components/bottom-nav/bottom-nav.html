@@ -1,0 +1,23 @@
+<nav class="bottom-nav" role="navigation" aria-label="Navigation principale">
+  <a class="bottom-nav-item" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" aria-label="Accueil">
+    <lucide-icon [img]="Home" [size]="24" [strokeWidth]="1.75" aria-hidden="true"></lucide-icon>
+    <span class="bottom-nav-label">Accueil</span>
+  </a>
+  <a class="bottom-nav-item" routerLink="/tables" routerLinkActive="active" aria-label="Mes Tables">
+    <lucide-icon [img]="ScrollText" [size]="24" [strokeWidth]="1.75" aria-hidden="true"></lucide-icon>
+    <span class="bottom-nav-label">Mes Tables</span>
+  </a>
+  <div class="bottom-nav-item bottom-nav-home" aria-hidden="true">
+    <span class="bottom-nav-home-btn">
+      <img src="/assets/logo/asteria-logo.webp" alt="" aria-hidden="true" class="bottom-nav-logo" />
+    </span>
+  </div>
+  <a class="bottom-nav-item" routerLink="/rules" routerLinkActive="active" aria-label="Règles">
+    <lucide-icon [img]="NotebookPen" [size]="24" [strokeWidth]="1.75" aria-hidden="true"></lucide-icon>
+    <span class="bottom-nav-label">Règles</span>
+  </a>
+  <a class="bottom-nav-item" routerLink="/auth" routerLinkActive="active" aria-label="Profil">
+    <lucide-icon [img]="User" [size]="24" [strokeWidth]="1.75" aria-hidden="true"></lucide-icon>
+    <span class="bottom-nav-label">Profil</span>
+  </a>
+</nav>

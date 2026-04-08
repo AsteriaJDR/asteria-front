@@ -171,13 +171,16 @@
               type="text"
               class="form-input"
               [(ngModel)]="joinTableCode"
-              placeholder="Ex: 123456789"
+              (input)="onJoinCodeInput($event)"
+              placeholder="Ex: 123456"
+              maxlength="6"
               (keyup.enter)="submitJoinTable()"
+              inputmode="numeric"
             />
           </div>
           <div class="modal-actions">
             <button class="modal-params-btn" (click)="closeJoinTableModal()">Annuler</button>
-            <button class="modal-play-btn" (click)="submitJoinTable()" [disabled]="!joinTableCode.trim()">Rejoindre</button>
+            <button class="modal-play-btn" (click)="submitJoinTable()" [disabled]="joinTableCode.length !== 6">Rejoindre</button>
           </div>
         </div>
       </div>

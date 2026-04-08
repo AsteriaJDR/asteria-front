@@ -127,8 +127,14 @@ export class Tables {
     this.joinTableCode = '';
   }
 
+  onJoinCodeInput(event: any): void {
+    // Accepter uniquement les chiffres
+    const input = event.target.value;
+    this.joinTableCode = input.replace(/[^0-9]/g, '').slice(0, 6);
+  }
+
   submitJoinTable(): void {
-    if (this.joinTableCode.trim()) {
+    if (this.joinTableCode.length === 6) {
       console.log('Rejoindre la table avec le code:', this.joinTableCode);
       // Ajouter la logique pour rejoindre la table avec le code
       this.closeJoinTableModal();

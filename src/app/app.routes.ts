@@ -6,6 +6,7 @@ import {Tables} from './pages/tables/tables';
 import {Contacts} from './pages/contacts/contacts';
 import {Rules} from './pages/rules/rules';
 import {Classes} from './pages/rules/classes/classes';
+import {Races} from './pages/rules/races/races';
 
 export const routes: Routes = [
   {path: 'home', redirectTo: '', pathMatch: 'full'},
@@ -16,4 +17,5 @@ export const routes: Routes = [
   {path: 'auth', component: Auth},
   {path: 'rules', component: Rules},
   {path: 'rules/classes', component: Classes},
+  {path: 'rules/races', component: Races},
 ];

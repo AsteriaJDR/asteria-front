@@ -1,0 +1,45 @@
+.main {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.rules-container {
+    width: 100%;
+    max-width: 400px; /* Évite que ça soit trop large sur grand écran */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Espace entre les boutons au lieu du padding interne */
+    background-color: #2c4a38;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.rule-card {
+    background-color: rgba(255, 255, 255, 0.05); /* Léger contraste */
+    color: white;
+    padding: 1.2rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Animation fluide */
+}
+
+/* L'effet de survol */
+.rule-card:hover {
+    background-color: #3a5a48;
+    transform: translateY(-2px); /* Petit effet de levée */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Effet au clic */
+.rule-card:active {
+    transform: translateY(0);
+}

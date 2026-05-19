@@ -3,9 +3,9 @@
 /* Import Nerd Font */
 @import url('https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@master/css/nerd-fonts-generated.css');
 
-html, body { 
-  height: 100%; 
-  margin: 0; 
+html, body {
+  height: 100%;
+  margin: 0;
   font-family: "CaskaydiaMono Nerd Font", "Cascadia Mono", monospace, sans-serif;
   overflow-x: hidden;
   background-color: #FFF0D7;

@@ -1,1 +1,188 @@
-<p>tables works!</p>
+<div class="tables-page">
+  <div class="actions-row">
+    <button type="button" class="action-pill create" (click)="createTable()" aria-label="Créer une table">Créer une table</button>
+    <button type="button" class="action-pill join" (click)="joinTable()" aria-label="Rejoindre une table">Rejoindre une table</button>
+  </div>
+
+  <div class="cards-grid">
+    <ng-container *ngIf="campaigns?.length; else noCampaigns">
+      <div
+        class="card"
+        *ngFor="let c of campaigns"
+        (click)="openCampaign(c)"
+        [style.background-image]="'url(' + c.image + ')'"
+        role="button"
+        tabindex="0"
+        (keydown.enter)="openCampaign(c)"
+        (keydown.space)="openCampaign(c)"
+      >
+        <div class="card-overlay">
+          <h3 class="card-title">{{ c.title }}</h3>
+          <div class="card-footer">
+            <span class="status">{{ c.status }}</span>
+            <span class="players">{{ c.players }}</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #noCampaigns>
+      <div class="no-campaigns">Aucune campagne disponible pour le moment.</div>
+    </ng-template>
+  </div>
+  <div class="modal-overlay" *ngIf="isCreateTableModalOpen" (click)="closeCreateTableModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeCreateTableModal()" aria-label="Fermer">✕</button>
+
+      <div *ngIf="createTableStep === 'selectStory'" class="modal-body full-width">
+        <div class="modal-right">
+          <h2>Sélectionner une histoire</h2>
+          <div class="stories-grid">
+            <div *ngFor="let story of stories"
+                 class="story-card"
+                 [class.selected]="selectedStory?.id === story.id"
+                 (click)="toggleStorySelection(story)">
+              <div class="story-card-image">
+                <div class="story-card-title">{{ story.title }}</div>
+              </div>
+              <div class="story-card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+            </div>
+          </div>
+          <div class="modal-actions">
+            <button class="modal-params-btn" (click)="closeCreateTableModal()">Annuler</button>
+            <button class="modal-play-btn" (click)="proceedToFormStep()" [disabled]="!selectedStory">Créer</button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="createTableStep === 'fillForm'" class="modal-body full-width create-table-form">
+        <div class="modal-right">
+          <h2>Créer une nouvelle table</h2>
+          <div class="form-group">
+            <label for="table-title">Titre de la table</label>
+            <input
+              id="table-title"
+              type="text"
+              class="form-input"
+              [(ngModel)]="newTable.title"
+              placeholder="Entrez le titre de votre table"
+              maxlength="50"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="table-image">Image de la table</label>
+            <div class="image-upload-section">
+              <input
+                id="table-image"
+                type="file"
+                accept="image/*"
+                class="file-input"
+                (change)="onImageUpload($event)"
+              />
+              <div *ngIf="newTable.image" class="image-preview">
+                <img [src]="newTable.image" alt="Aperçu de l'image" />
+              </div>
+              <div *ngIf="!newTable.image" class="image-placeholder">
+                <p>Aucune image sélectionnée</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="max-players">Nombre de joueurs maximum</label>
+            <select
+              id="max-players"
+              class="form-select"
+              [(ngModel)]="newTable.maxPlayers"
+            >
+              <option [value]="2">2 joueurs</option>
+              <option [value]="3">3 joueurs</option>
+              <option [value]="4">4 joueurs</option>
+              <option [value]="5">5 joueurs</option>
+              <option [value]="6">6 joueurs</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="table-description">Description</label>
+            <textarea
+              id="table-description"
+              class="form-textarea"
+              [(ngModel)]="newTable.description"
+              placeholder="Décrivez votre table..."
+              rows="5"
+              maxlength="500"
+            ></textarea>
+            <span class="char-count">{{ newTable.description.length }}/500</span>
+          </div>
+
+          <div class="modal-actions">
+            <button class="modal-params-btn" (click)="backToStorySelection()">Retour</button>
+            <button
+              class="modal-play-btn"
+              (click)="submitCreateTable()"
+              [disabled]="!newTable.title || !newTable.description"
+            >Créer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeModal()" aria-label="Fermer">✕</button>
+      <div *ngIf="selectedCampaign" class="modal-body">
+        <div class="modal-left">
+          <img [src]="selectedCampaign.image" [alt]="selectedCampaign.title" class="modal-image">
+          <div class="modal-code-section">
+            <h4>Code de la table</h4>
+            <p class="modal-code">123456789</p>
+          </div>
+          <button class="modal-players-btn">Liste des joueurs</button>
+        </div>
+        <div class="modal-right">
+          <h2>{{ selectedCampaign.title }}</h2>
+          <h3>Quête d'introduction</h3>
+          <div class="modal-description">
+            <h4>Description</h4>
+            <p>C'est l'histoire de trois petits cochons, qui mangeaient trois produits laitiers... Quand tout à coup, PAF PAF PAF LE LOUUUP !!!</p>
+            <p>Les produits laitiers sont nos amis pour la vie.</p>
+          </div>
+          <div class="modal-actions">
+            <button class="modal-params-btn">⚙ Paramètres</button>
+            <button class="modal-play-btn">JOUER</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-overlay" *ngIf="isJoinTableModalOpen" (click)="closeJoinTableModal()">
+    <div class="modal-content join-table-modal" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeJoinTableModal()" aria-label="Fermer">✕</button>
+      <div class="modal-body full-width">
+        <div class="modal-right">
+          <h2>Rejoindre une table</h2>
+          <div class="form-group">
+            <label for="join-code">Entrez le code de la table</label>
+            <input
+              id="join-code"
+              type="text"
+              class="form-input"
+              [(ngModel)]="joinTableCode"
+              (input)="onJoinCodeInput($event)"
+              placeholder="Ex: 123456"
+              maxlength="6"
+              (keyup.enter)="submitJoinTable()"
+              inputmode="numeric"
+            />
+          </div>
+          <div class="modal-actions">
+            <button class="modal-params-btn" (click)="closeJoinTableModal()">Annuler</button>
+            <button class="modal-play-btn" (click)="submitJoinTable()" [disabled]="joinTableCode.length !== 6">Rejoindre</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

@@ -6,7 +6,7 @@ import {SigninResponse} from '../../interfaces/signin-response';
 import {SignupResponse} from '../../interfaces/signup-response';
 import {SignupCredentials} from '../../interfaces/signup-credentials';
 import {User} from '../../interfaces/user';
-import {environment} from '../../../../../environments/environment';
+import {environment} from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

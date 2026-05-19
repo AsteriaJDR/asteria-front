@@ -1,0 +1,25 @@
+<div class="profile-page">
+  <div class="profile-card">
+    <div class="avatar">
+      <lucide-icon [img]="User" [size]="48" [strokeWidth]="1.5"></lucide-icon>
+    </div>
+    <h1 class="username">{{ user?.username }}</h1>
+    <span class="role-badge">
+      <lucide-icon [img]="Shield" [size]="12" [strokeWidth]="2"></lucide-icon>
+      Joueur
+    </span>
+
+    <div class="info-list">
+      <div class="info-row">
+        <lucide-icon [img]="User" [size]="16" [strokeWidth]="1.75"></lucide-icon>
+        <span class="info-label">Nom d'utilisateur</span>
+        <span class="info-value">{{ user?.username }}</span>
+      </div>
+      <div class="info-row">
+        <lucide-icon [img]="Mail" [size]="16" [strokeWidth]="1.75"></lucide-icon>
+        <span class="info-label">Email</span>
+        <span class="info-value">{{ user?.email }}</span>
+      </div>
+    </div>
+  </div>
+</div>

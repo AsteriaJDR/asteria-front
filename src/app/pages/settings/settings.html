@@ -1,0 +1,64 @@
+<div class="settings-page">
+  <div class="settings-container">
+    <h1 class="page-title">Paramètres</h1>
+
+    <section class="settings-section">
+      <h2 class="section-title">
+        <lucide-icon [img]="Lock" [size]="18" [strokeWidth]="1.75"></lucide-icon>
+        Changer le mot de passe
+      </h2>
+      <div class="card">
+        <div class="field">
+          <label>Mot de passe actuel</label>
+          <input type="password" [(ngModel)]="currentPassword" placeholder="••••••••" />
+        </div>
+        <div class="field">
+          <label>Nouveau mot de passe</label>
+          <input type="password" [(ngModel)]="newPassword" placeholder="••••••••" />
+        </div>
+        <div class="field">
+          <label>Confirmer le mot de passe</label>
+          <input type="password" [(ngModel)]="confirmPassword" placeholder="••••••••" />
+        </div>
+        @if (passwordError()) {
+          <p class="error-msg">{{ passwordError() }}</p>
+        }
+        @if (passwordSuccess()) {
+          <p class="success-msg">Mot de passe modifié avec succès.</p>
+        }
+        <button class="btn-primary" (click)="savePassword()">Enregistrer</button>
+      </div>
+    </section>
+
+    <section class="settings-section">
+      <h2 class="section-title">
+        <lucide-icon [img]="Bell" [size]="18" [strokeWidth]="1.75"></lucide-icon>
+        Notifications
+      </h2>
+      <div class="card">
+        <div class="toggle-row">
+          <span>Recevoir les notifications</span>
+          <button class="toggle" [class.active]="notificationsEnabled()" (click)="toggleNotifications()">
+            <span class="toggle-knob"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="settings-section danger-zone">
+      <h2 class="section-title">
+        <lucide-icon [img]="Trash2" [size]="18" [strokeWidth]="1.75"></lucide-icon>
+        Zone dangereuse
+      </h2>
+      <div class="card">
+        <div class="danger-row">
+          <div>
+            <p class="danger-title">Supprimer le compte</p>
+            <p class="danger-desc">Cette action est irréversible.</p>
+          </div>
+          <button class="btn-danger">Supprimer</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

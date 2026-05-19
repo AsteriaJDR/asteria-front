@@ -170,6 +170,10 @@
   background: var(--nav-hover-bg);
 }
 
+.notification-container {
+  position: relative;
+}
+
 .notification-btn {
   position: relative;
 }
@@ -189,6 +193,128 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.notification-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 320px;
+  background: var(--nav-pill-bg);
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  z-index: 1000;
+  animation: dropdownFadeIn 0.2s ease;
+}
+
+.notif-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.mark-all-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.75rem;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.mark-all-btn:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.notif-list {
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.notif-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  cursor: pointer;
+  transition: background 0.15s;
+  position: relative;
+}
+
+.notif-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.notif-item.unread {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.notif-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.notif-icon--info {
+  background: rgba(52, 152, 219, 0.2);
+  color: #3498db;
+}
+
+.notif-icon--success {
+  background: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
+}
+
+.notif-icon--warning {
+  background: rgba(243, 156, 18, 0.2);
+  color: #f39c12;
+}
+
+.notif-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.notif-message {
+  margin: 0 0 0.2rem;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.4;
+}
+
+.notif-date {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.unread-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #3498db;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+.notif-empty {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.35);
+  margin: 0;
 }
 
 .profile-menu-container {

@@ -1,9 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import {
   LucideAngularModule,
-  ShoppingCart,
   User,
   NotebookPen,
   ScrollText,
@@ -12,9 +11,13 @@ import {
   Menu,
   LogOut,
   Settings,
-  X
+  X,
+  Info,
+  CheckCircle,
+  AlertTriangle,
 } from 'lucide-angular';
 import { AuthService } from '../../core/services/auth/auth-service';
+import { NotificationService } from '../../core/services/notification/notification-service';
 
 @Component({
   selector: 'app-navbar',
@@ -23,7 +26,6 @@ import { AuthService } from '../../core/services/auth/auth-service';
   imports: [CommonModule, RouterLink, RouterLinkActive, LucideAngularModule],
 })
 export class NavbarComponent {
-  readonly ShoppingCart = ShoppingCart;
   readonly User = User;
   readonly NotebookPen = NotebookPen;
   readonly ScrollText = ScrollText;
@@ -33,14 +35,18 @@ export class NavbarComponent {
   readonly LogOut = LogOut;
   readonly Settings = Settings;
   readonly X = X;
+  readonly Info = Info;
+  readonly CheckCircle = CheckCircle;
+  readonly AlertTriangle = AlertTriangle;
 
   isMobileMenuOpen = signal(false);
   isProfileMenuOpen = signal(false);
-  isMobile = signal(false);
+  isNotificationMenuOpen = signal(false);
 
-  notificationCount = signal(3);
-
-  constructor(public authService: AuthService) {}
+  constructor(
+    public authService: AuthService,
+    public notificationService: NotificationService,
+  ) {}
 
   isLoggedIn(): boolean {
     return !!this.authService.getCurrentUser();
@@ -52,6 +58,12 @@ export class NavbarComponent {
 
   toggleProfileMenu(): void {
     this.isProfileMenuOpen.update(v => !v);
+    if (this.isProfileMenuOpen()) this.isNotificationMenuOpen.set(false);
+  }
+
+  toggleNotificationMenu(): void {
+    this.isNotificationMenuOpen.update(v => !v);
+    if (this.isNotificationMenuOpen()) this.isProfileMenuOpen.set(false);
   }
 
   closeProfileMenu(): void {
@@ -59,12 +71,32 @@ export class NavbarComponent {
   }
 
   logout(): void {
-    this.authService.logout();
+    this.authService.logout().subscribe();
     this.isProfileMenuOpen.set(false);
   }
 
-  checkMobile(): void {
-    this.isMobile.set(window.innerWidth < 900);
+  notificationIcon(type: string) {
+    if (type === 'success') return this.CheckCircle;
+    if (type === 'warning') return this.AlertTriangle;
+    return this.Info;
+  }
+
+  formatDate(date: Date): string {
+    const diff = Date.now() - new Date(date).getTime();
+    const h = Math.floor(diff / 3600000);
+    if (h < 1) return 'À l\'instant';
+    if (h < 24) return `Il y a ${h}h`;
+    const d = Math.floor(h / 24);
+    return `Il y a ${d}j`;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: Event): void {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.notification-container') && !target.closest('.profile-menu-container')) {
+      this.isNotificationMenuOpen.set(false);
+      this.isProfileMenuOpen.set(false);
+    }
   }
 }
 

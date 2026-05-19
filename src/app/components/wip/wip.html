@@ -1,0 +1,19 @@
+<div class="wip-page">
+  <div class="wip-card">
+    <div class="wip-icon">
+      <lucide-icon [img]="Hammer" [size]="40" [strokeWidth]="1.5"></lucide-icon>
+    </div>
+    <h1 class="wip-title">En cours de construction</h1>
+    @if (pageName) {
+      <p class="wip-page-name">{{ pageName }}</p>
+    }
+    <p class="wip-desc">
+      Cette page est en cours de développement.<br>
+      Revenez bientôt, aventurier.
+    </p>
+    <div class="wip-badge">
+      <lucide-icon [img]="Clock" [size]="13" [strokeWidth]="2"></lucide-icon>
+      Bientôt disponible
+    </div>
+  </div>
+</div>

@@ -1,95 +1,67 @@
 <nav class="navbar" role="navigation" aria-label="Navigation principale">
-  <a class="brand" routerLink="/" aria-label="Retour à l'accueil">
-    <img src="/asteria-logo.webp" alt="" class="brand-img" aria-hidden="true" />
-  </a>
 
-  <div class="nav-links" [class.mobile-open]="isMobileMenuOpen" role="menubar">
-    <a
-      class="nav-link"
-      routerLink="/community"
-      routerLinkActive="active"
-      role="menuitem"
-      (click)="closeMobileMenu()"
-    >
-      <lucide-icon
-        [img]="Users"
-        class="nav-icon"
-        [size]="18"
-        [strokeWidth]="2"
-        aria-hidden="true"
-      ></lucide-icon>
-      <span class="nav-text">La Communauté</span>
-    </a>
-    <a
-      class="nav-link"
-      routerLink="/tables"
-      routerLinkActive="active"
-      role="menuitem"
-      (click)="closeMobileMenu()"
-    >
-      <lucide-icon
-        [img]="Layers"
-        class="nav-icon"
-        [size]="18"
-        [strokeWidth]="2"
-        aria-hidden="true"
-      ></lucide-icon>
+  <button class="mobile-menu-btn" (click)="toggleMobileMenu()" [attr.aria-expanded]="isMobileMenuOpen()" aria-label="Menu">
+    <lucide-icon [img]="isMobileMenuOpen() ? X : Menu" [size]="20" [strokeWidth]="1.75"></lucide-icon>
+  </button>
+
+  <div class="nav-links" role="menubar" [class.mobile-open]="isMobileMenuOpen()">
+    <a class="nav-link" routerLink="/tables" routerLinkActive="active" role="menuitem" (click)="isMobileMenuOpen.set(false)">
+      <lucide-icon [img]="ScrollText" [size]="16" [strokeWidth]="1.75" aria-hidden="true"></lucide-icon>
       <span class="nav-text">Mes Tables</span>
     </a>
-    <a
-      class="nav-link"
-      routerLink="/shop"
-      routerLinkActive="active"
-      role="menuitem"
-      (click)="closeMobileMenu()"
-    >
-      <lucide-icon
-        [img]="ShoppingCart"
-        class="nav-icon"
-        [size]="18"
-        [strokeWidth]="2"
-        aria-hidden="true"
-      ></lucide-icon>
+    <a class="nav-link" routerLink="/shop" routerLinkActive="active" role="menuitem" (click)="isMobileMenuOpen.set(false)">
+      <lucide-icon [img]="ShoppingCart" [size]="16" [strokeWidth]="1.75" aria-hidden="true"></lucide-icon>
       <span class="nav-text">Magasin</span>
     </a>
-    <a
-      class="nav-link"
-      routerLink="/rules"
-      routerLinkActive="active"
-      role="menuitem"
-      (click)="closeMobileMenu()"
-    >
-      <lucide-icon
-        [img]="NotebookPen"
-        class="nav-icon"
-        [size]="18"
-        [strokeWidth]="2"
-        aria-hidden="true"
-      ></lucide-icon>
+    <a class="nav-link" routerLink="/rules" routerLinkActive="active" role="menuitem" (click)="isMobileMenuOpen.set(false)">
+      <lucide-icon [img]="NotebookPen" [size]="16" [strokeWidth]="1.75" aria-hidden="true"></lucide-icon>
       <span class="nav-text">Règles</span>
     </a>
   </div>
 
-  <div class="right-section">
-    <div class="user-actions" role="group" aria-label="Actions utilisateur">
-      <a class="icon-btn" routerLink="/auth/signin" aria-label="Se connecter">
-        <lucide-icon [img]="User" [size]="20" [strokeWidth]="2" aria-hidden="true"></lucide-icon>
-      </a>
-    </div>
+  <a class="brand" routerLink="/" aria-label="Retour à l'accueil">
+    <img src="/assets/logo/asteria-logo-full.png" alt="" class="brand-img" aria-hidden="true" />
+  </a>
 
-    <button
-      class="mobile-toggle"
-      (click)="toggleMobileMenu()"
-      [attr.aria-expanded]="isMobileMenuOpen"
-      aria-controls="nav-links"
-      aria-label="Ouvrir le menu de navigation"
-    >
-      <lucide-icon
-        [img]="isMobileMenuOpen ? X : Menu"
-        [size]="22"
-        [strokeWidth]="2"
-        aria-hidden="true"
-      ></lucide-icon>
-    </button>
+  <div class="right-section">
+    @if (isLoggedIn()) {
+      <button class="icon-btn notification-btn" aria-label="Notifications">
+        <lucide-icon [img]="Bell" [size]="18" [strokeWidth]="1.75"></lucide-icon>
+        @if (notificationCount() > 0) {
+          <span class="notification-badge">{{ notificationCount() }}</span>
+        }
+      </button>
+    }
+
+    @if (isLoggedIn()) {
+      <div class="profile-menu-container">
+        <button class="icon-btn profile-btn" (click)="toggleProfileMenu()" [attr.aria-expanded]="isProfileMenuOpen()" aria-label="Profil utilisateur">
+          <lucide-icon [img]="User" [size]="18" [strokeWidth]="1.75"></lucide-icon>
+        </button>
+        
+        @if (isProfileMenuOpen()) {
+          <div class="profile-dropdown" role="menu">
+            <a routerLink="/profile" class="dropdown-item" role="menuitem" (click)="closeProfileMenu()">
+              <lucide-icon [img]="User" [size]="16" [strokeWidth]="1.75"></lucide-icon>
+              <span>Mon Profil</span>
+            </a>
+            <a routerLink="/settings" class="dropdown-item" role="menuitem" (click)="closeProfileMenu()">
+              <lucide-icon [img]="Settings" [size]="16" [strokeWidth]="1.75"></lucide-icon>
+              <span>Paramètres</span>
+            </a>
+            <button class="dropdown-item logout-item" role="menuitem" (click)="logout()">
+              <lucide-icon [img]="LogOut" [size]="16" [strokeWidth]="1.75"></lucide-icon>
+              <span>Déconnexion</span>
+            </button>
+          </div>
+        }
+      </div>
+    } @else {
+      <a class="user-btn signin-btn" routerLink="/auth" aria-label="Se connecter">
+        <lucide-icon [img]="LogIn" [size]="16" [strokeWidth]="1.75" aria-hidden="true"></lucide-icon>
+        <span class="btn-text">Sign In</span>
+      </a>
+    }
   </div>
+
 </nav>

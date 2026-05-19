@@ -6,12 +6,13 @@ import {SigninResponse} from '../../interfaces/signin-response';
 import {SignupResponse} from '../../interfaces/signup-response';
 import {SignupCredentials} from '../../interfaces/signup-credentials';
 import {User} from '../../interfaces/user';
+import {environment} from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly AUTH_API_URL = 'http://localhost:3000/api/auth';
+  private readonly AUTH_API_URL = `${environment.apiUrl}/api/auth`;
 
   private currentUser: {username: string, email: string} | undefined;
 

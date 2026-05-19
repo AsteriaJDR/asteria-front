@@ -5,7 +5,7 @@
 .tables-page {
   padding: 28px;
   box-sizing: border-box;
-  background-color: #f6e9d2;
+  background-color: #fff0d7;
 }
 
 .actions-row {
@@ -460,3 +460,27 @@
   max-width: 400px;
 }
 
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-campaigns {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 2rem;
+  color: rgba(26, 46, 34, 0.45);
+  font-size: 0.95rem;
+}

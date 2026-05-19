@@ -69,7 +69,7 @@
   text-decoration: none;
   flex-shrink: 0;
   transition: opacity var(--transition);
-  outline-offset: 3px;
+  outline: none;
 }
 
 .brand:hover {
@@ -104,6 +104,7 @@
   gap: 0.4rem;
   padding: 0.5rem 1rem;
   border: none;
+  outline: none;
   background: transparent;
   color: rgba(255, 255, 255, 0.85);
   font-size: 0.8rem;
@@ -116,7 +117,6 @@
     background var(--transition),
     color var(--transition);
   white-space: nowrap;
-  outline-offset: 2px;
 }
 
 .nav-link:hover {
@@ -392,13 +392,13 @@
   background: rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: none;
+  outline: none;
   cursor: pointer;
   transition:
     background var(--transition),
     color var(--transition),
     transform var(--transition);
-  outline-offset: 3px;
 }
 
 .icon-btn:hover {
@@ -463,10 +463,10 @@
   border-radius: 50%;
   background: transparent;
   border: none;
+  outline: none;
   color: var(--nav-text);
   cursor: pointer;
   transition: background var(--transition);
-  outline-offset: 2px;
 }
 
 .mobile-toggle:hover {

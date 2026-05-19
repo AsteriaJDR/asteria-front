@@ -1,42 +1,136 @@
-<div class="profile-page">
-  <div class="profile-card">
+<div class="account-page">
+  <div class="account-shell">
 
-    <div class="profile-header">
-      <div class="avatar">
-        <lucide-icon [img]="User" [size]="40" [strokeWidth]="1.5"></lucide-icon>
+    <!-- Sidebar -->
+    <aside class="account-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-avatar">
+          <lucide-icon [img]="User" [size]="30" [strokeWidth]="1.5"></lucide-icon>
+        </div>
+        <span class="sidebar-username">{{ user?.username ?? '—' }}</span>
+        <span class="sidebar-role">
+          <lucide-icon [img]="Shield" [size]="10" [strokeWidth]="2"></lucide-icon>
+          Joueur
+        </span>
       </div>
-      <h1 class="username">{{ user?.username }}</h1>
-      <span class="role-badge">
-        <lucide-icon [img]="Shield" [size]="11" [strokeWidth]="2"></lucide-icon>
-        Joueur
-      </span>
+
+      <nav class="sidebar-nav">
+        <button
+          class="sidebar-nav-item"
+          [class.active]="activeTab() === 'profile'"
+          (click)="activeTab.set('profile')"
+        >
+          <lucide-icon [img]="User" [size]="15" [strokeWidth]="2"></lucide-icon>
+          Mon Profil
+        </button>
+        <button
+          class="sidebar-nav-item"
+          [class.active]="activeTab() === 'settings'"
+          (click)="activeTab.set('settings')"
+        >
+          <lucide-icon [img]="Settings" [size]="15" [strokeWidth]="2"></lucide-icon>
+          Paramètres
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Content -->
+    <div class="account-content">
+
+      @if (activeTab() === 'profile') {
+        <div class="content-section">
+          <p class="content-title">Informations du compte</p>
+
+          <div class="info-row">
+            <div class="info-icon">
+              <lucide-icon [img]="User" [size]="15" [strokeWidth]="1.75"></lucide-icon>
+            </div>
+            <div class="info-content">
+              <span class="info-label">Pseudo</span>
+              <span class="info-value">{{ user?.username ?? '—' }}</span>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-icon">
+              <lucide-icon [img]="Mail" [size]="15" [strokeWidth]="1.75"></lucide-icon>
+            </div>
+            <div class="info-content">
+              <span class="info-label">Adresse email</span>
+              <span class="info-value">{{ user?.email ?? '—' }}</span>
+            </div>
+          </div>
+        </div>
+      }
+
+      @if (activeTab() === 'settings') {
+        <div class="content-section">
+          <p class="section-label">
+            <lucide-icon [img]="Lock" [size]="13" [strokeWidth]="2"></lucide-icon>
+            Sécurité
+          </p>
+          <div class="form-group">
+            <label class="form-label">Mot de passe actuel</label>
+            <div class="input-wrapper">
+              <input type="password" [(ngModel)]="currentPassword" placeholder="••••••••" class="form-input" />
+              <lucide-icon class="input-icon" [img]="Lock" [size]="15" [strokeWidth]="1.75"></lucide-icon>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nouveau mot de passe</label>
+            <div class="input-wrapper">
+              <input type="password" [(ngModel)]="newPassword" placeholder="••••••••" class="form-input" />
+              <lucide-icon class="input-icon" [img]="Lock" [size]="15" [strokeWidth]="1.75"></lucide-icon>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Confirmer le mot de passe</label>
+            <div class="input-wrapper">
+              <input type="password" [(ngModel)]="confirmPassword" placeholder="••••••••" class="form-input" />
+              <lucide-icon class="input-icon" [img]="Lock" [size]="15" [strokeWidth]="1.75"></lucide-icon>
+            </div>
+          </div>
+          @if (passwordError()) {
+            <p class="field-error">{{ passwordError() }}</p>
+          }
+          @if (passwordSuccess()) {
+            <p class="field-success">Mot de passe modifié avec succès.</p>
+          }
+          <button class="submit-btn" (click)="savePassword()">Enregistrer</button>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="content-section">
+          <p class="section-label">
+            <lucide-icon [img]="Bell" [size]="13" [strokeWidth]="2"></lucide-icon>
+            Notifications
+          </p>
+          <div class="toggle-row">
+            <span class="toggle-label">Recevoir les notifications</span>
+            <button class="toggle" [class.active]="notificationsEnabled()" (click)="toggleNotifications()">
+              <span class="toggle-knob"></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="content-section">
+          <p class="section-label danger-label">
+            <lucide-icon [img]="Trash2" [size]="13" [strokeWidth]="2"></lucide-icon>
+            Zone dangereuse
+          </p>
+          <div class="danger-row">
+            <div>
+              <p class="danger-title">Supprimer le compte</p>
+              <p class="danger-desc">Cette action est irréversible et supprime toutes vos données.</p>
+            </div>
+            <button class="btn-danger">Supprimer</button>
+          </div>
+        </div>
+      }
+
     </div>
-
-    <div class="divider"></div>
-
-    <div class="info-section">
-      <p class="section-label">Informations du compte</p>
-
-      <div class="info-row">
-        <div class="info-icon">
-          <lucide-icon [img]="User" [size]="15" [strokeWidth]="1.75"></lucide-icon>
-        </div>
-        <div class="info-content">
-          <span class="info-label">Pseudo</span>
-          <span class="info-value">{{ user?.username }}</span>
-        </div>
-      </div>
-
-      <div class="info-row">
-        <div class="info-icon">
-          <lucide-icon [img]="Mail" [size]="15" [strokeWidth]="1.75"></lucide-icon>
-        </div>
-        <div class="info-content">
-          <span class="info-label">Adresse email</span>
-          <span class="info-value">{{ user?.email }}</span>
-        </div>
-      </div>
-    </div>
-
   </div>
 </div>

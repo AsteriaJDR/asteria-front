@@ -8,7 +8,6 @@ import {Rules} from './pages/rules/rules';
 import {Classes} from './pages/rules/classes/classes';
 import {Races} from './pages/rules/races/races';
 import {Profile} from './pages/profile/profile';
-import {Settings} from './pages/settings/settings';
 
 export const routes: Routes = [
   {path: 'home', redirectTo: '', pathMatch: 'full'},
@@ -19,6 +18,6 @@ export const routes: Routes = [
   {path: 'rules', component: Rules},
   {path: 'rules/classes', component: Classes},
   {path: 'rules/races', component: Races},
-  {path: 'profile', component: Profile, canActivate: [authGuard]},
-  {path: 'settings', component: Settings, canActivate: [authGuard]},
+  {path: 'profile', component: Profile, canActivate: [authGuard], data: {tab: 'profile'}},
+  {path: 'settings', component: Profile, canActivate: [authGuard], data: {tab: 'settings'}},
 ];

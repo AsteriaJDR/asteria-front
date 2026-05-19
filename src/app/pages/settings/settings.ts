@@ -1,24 +1,22 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { LucideAngularModule, Lock, Bell, Trash2, ChevronRight } from 'lucide-angular';
+import { RouterLink } from '@angular/router';
+import { LucideAngularModule, Lock, Bell, Trash2, User, Settings as SettingsIcon } from 'lucide-angular';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.html',
   styleUrl: './settings.css',
-  imports: [LucideAngularModule, FormsModule],
+  imports: [LucideAngularModule, FormsModule, RouterLink],
 })
 export class Settings {
   readonly Lock = Lock;
   readonly Bell = Bell;
   readonly Trash2 = Trash2;
-  readonly ChevronRight = ChevronRight;
+  readonly User = User;
+  readonly Settings = SettingsIcon;
 
   notificationsEnabled = signal(true);
-
-  toggleNotifications(): void {
-    this.notificationsEnabled.update(v => !v);
-  }
 
   currentPassword = '';
   newPassword = '';
@@ -26,10 +24,13 @@ export class Settings {
   passwordError = signal('');
   passwordSuccess = signal(false);
 
+  toggleNotifications(): void {
+    this.notificationsEnabled.update(v => !v);
+  }
+
   savePassword(): void {
     this.passwordError.set('');
     this.passwordSuccess.set(false);
-
     if (!this.currentPassword || !this.newPassword || !this.confirmPassword) {
       this.passwordError.set('Tous les champs sont requis.');
       return;

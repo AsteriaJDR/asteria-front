@@ -1,14 +1,24 @@
-<div class="settings-page">
-  <div class="settings-container">
+<div class="account-page">
+  <div class="account-shell">
 
-    <h1 class="page-title">Paramètres</h1>
+    <nav class="account-tabs">
+      <a class="tab" routerLink="/profile">
+        <lucide-icon [img]="User" [size]="15" [strokeWidth]="2"></lucide-icon>
+        Mon Profil
+      </a>
+      <a class="tab active" routerLink="/settings">
+        <lucide-icon [img]="Settings" [size]="15" [strokeWidth]="2"></lucide-icon>
+        Paramètres
+      </a>
+    </nav>
 
-    <section class="settings-section">
-      <p class="section-label">
-        <lucide-icon [img]="Lock" [size]="13" [strokeWidth]="2"></lucide-icon>
-        Sécurité
-      </p>
-      <div class="card">
+    <div class="account-card">
+
+      <section class="settings-section">
+        <p class="section-label">
+          <lucide-icon [img]="Lock" [size]="13" [strokeWidth]="2"></lucide-icon>
+          Sécurité
+        </p>
         <div class="form-group">
           <label class="form-label">Mot de passe actuel</label>
           <div class="input-wrapper">
@@ -37,30 +47,30 @@
           <p class="field-success">Mot de passe modifié avec succès.</p>
         }
         <button class="submit-btn" (click)="savePassword()">Enregistrer</button>
-      </div>
-    </section>
+      </section>
 
-    <section class="settings-section">
-      <p class="section-label">
-        <lucide-icon [img]="Bell" [size]="13" [strokeWidth]="2"></lucide-icon>
-        Notifications
-      </p>
-      <div class="card">
+      <div class="divider"></div>
+
+      <section class="settings-section">
+        <p class="section-label">
+          <lucide-icon [img]="Bell" [size]="13" [strokeWidth]="2"></lucide-icon>
+          Notifications
+        </p>
         <div class="toggle-row">
           <span class="toggle-label">Recevoir les notifications</span>
           <button class="toggle" [class.active]="notificationsEnabled()" (click)="toggleNotifications()">
             <span class="toggle-knob"></span>
           </button>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="settings-section">
-      <p class="section-label danger-label">
-        <lucide-icon [img]="Trash2" [size]="13" [strokeWidth]="2"></lucide-icon>
-        Zone dangereuse
-      </p>
-      <div class="card danger-card">
+      <div class="divider"></div>
+
+      <section class="settings-section">
+        <p class="section-label danger-label">
+          <lucide-icon [img]="Trash2" [size]="13" [strokeWidth]="2"></lucide-icon>
+          Zone dangereuse
+        </p>
         <div class="danger-row">
           <div>
             <p class="danger-title">Supprimer le compte</p>
@@ -68,8 +78,8 @@
           </div>
           <button class="btn-danger">Supprimer</button>
         </div>
-      </div>
-    </section>
+      </section>
 
+    </div>
   </div>
 </div>

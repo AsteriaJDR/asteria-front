@@ -152,6 +152,104 @@
   gap: 0.5rem;
 }
 
+.mobile-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: transparent;
+  color: var(--nav-text);
+  cursor: pointer;
+  border-radius: var(--nav-pill-radius);
+  transition: background var(--transition);
+}
+
+.mobile-menu-btn:hover {
+  background: var(--nav-hover-bg);
+}
+
+.notification-btn {
+  position: relative;
+}
+
+.notification-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  background: #e74c3c;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-menu-container {
+  position: relative;
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 180px;
+  background: var(--nav-pill-bg);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  z-index: 1000;
+  animation: dropdownFadeIn 0.2s ease;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.85rem;
+  font-family: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.dropdown-item:hover {
+  background: var(--nav-hover-bg);
+  color: var(--nav-text);
+}
+
+.logout-item {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e74c3c;
+}
+
+.logout-item:hover {
+  background: rgba(231, 76, 60, 0.15);
+  color: #e74c3c;
+}
+
 .user-actions {
   display: flex;
   align-items: center;
@@ -251,6 +349,33 @@
 .mobile-toggle:focus-visible {
   outline: 2px solid rgba(255, 255, 255, 0.8);
 }
+
+@media (max-width: 1300px) {
+  .navbar {
+    width: 65%;
+  }
+  
+  .nav-text {
+    display: none;
+  }
+  
+  .nav-link {
+    padding: 0.5rem;
+  }
+  
+  .btn-text {
+    display: none;
+  }
+  
+  .signin-btn {
+    padding: 0.5rem;
+    width: 44px;
+    height: 44px;
+    justify-content: center;
+    border-radius: 50%;
+  }
+}
+
 
 @media (max-width: 768px) {
   :host {

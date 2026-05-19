@@ -1,17 +1,21 @@
 <nav class="navbar" role="navigation" aria-label="Navigation principale">
 
-  <div class="nav-links" role="menubar">
-    <a class="nav-link" routerLink="/tables" routerLinkActive="active" role="menuitem">
+  <button class="mobile-menu-btn" (click)="toggleMobileMenu()" [attr.aria-expanded]="isMobileMenuOpen()" aria-label="Menu">
+    <lucide-icon [img]="isMobileMenuOpen() ? X : Menu" [size]="20" [strokeWidth]="1.75"></lucide-icon>
+  </button>
+
+  <div class="nav-links" role="menubar" [class.mobile-open]="isMobileMenuOpen()">
+    <a class="nav-link" routerLink="/tables" routerLinkActive="active" role="menuitem" (click)="isMobileMenuOpen.set(false)">
       <lucide-icon [img]="ScrollText" [size]="16" [strokeWidth]="1.75" aria-hidden="true"></lucide-icon>
-      <span>Mes Tables</span>
+      <span class="nav-text">Mes Tables</span>
     </a>
-    <a class="nav-link" routerLink="/shop" routerLinkActive="active" role="menuitem">
+    <a class="nav-link" routerLink="/shop" routerLinkActive="active" role="menuitem" (click)="isMobileMenuOpen.set(false)">
       <lucide-icon [img]="ShoppingCart" [size]="16" [strokeWidth]="1.75" aria-hidden="true"></lucide-icon>
-      <span>Magasin</span>
+      <span class="nav-text">Magasin</span>
     </a>
-    <a class="nav-link" routerLink="/rules" routerLinkActive="active" role="menuitem">
+    <a class="nav-link" routerLink="/rules" routerLinkActive="active" role="menuitem" (click)="isMobileMenuOpen.set(false)">
       <lucide-icon [img]="NotebookPen" [size]="16" [strokeWidth]="1.75" aria-hidden="true"></lucide-icon>
-      <span>Règles</span>
+      <span class="nav-text">Règles</span>
     </a>
   </div>
 
@@ -19,14 +23,45 @@
     <img src="/assets/logo/asteria-logo-full.png" alt="" class="brand-img" aria-hidden="true" />
   </a>
 
-  <a *ngIf="!isLoggedIn()" class="user-btn signin-btn" routerLink="/auth" aria-label="Se connecter">
-    <lucide-icon [img]="LogIn" [size]="16" [strokeWidth]="1.75" aria-hidden="true"></lucide-icon>
-    <span>Sign In</span>
-  </a>
+  <div class="right-section">
+    @if (isLoggedIn()) {
+      <button class="icon-btn notification-btn" aria-label="Notifications">
+        <lucide-icon [img]="Bell" [size]="18" [strokeWidth]="1.75"></lucide-icon>
+        @if (notificationCount() > 0) {
+          <span class="notification-badge">{{ notificationCount() }}</span>
+        }
+      </button>
+    }
 
-  <a *ngIf="isLoggedIn()" class="user-btn signin-btn" routerLink="/auth" aria-label="Profil utilisateur">
-    <lucide-icon [img]="User" [size]="16" [strokeWidth]="1.75" aria-hidden="true"></lucide-icon>
-    <span>Profil</span>
-  </a>
+    @if (isLoggedIn()) {
+      <div class="profile-menu-container">
+        <button class="icon-btn profile-btn" (click)="toggleProfileMenu()" [attr.aria-expanded]="isProfileMenuOpen()" aria-label="Profil utilisateur">
+          <lucide-icon [img]="User" [size]="18" [strokeWidth]="1.75"></lucide-icon>
+        </button>
+        
+        @if (isProfileMenuOpen()) {
+          <div class="profile-dropdown" role="menu">
+            <a routerLink="/profile" class="dropdown-item" role="menuitem" (click)="closeProfileMenu()">
+              <lucide-icon [img]="User" [size]="16" [strokeWidth]="1.75"></lucide-icon>
+              <span>Mon Profil</span>
+            </a>
+            <a routerLink="/settings" class="dropdown-item" role="menuitem" (click)="closeProfileMenu()">
+              <lucide-icon [img]="Settings" [size]="16" [strokeWidth]="1.75"></lucide-icon>
+              <span>Paramètres</span>
+            </a>
+            <button class="dropdown-item logout-item" role="menuitem" (click)="logout()">
+              <lucide-icon [img]="LogOut" [size]="16" [strokeWidth]="1.75"></lucide-icon>
+              <span>Déconnexion</span>
+            </button>
+          </div>
+        }
+      </div>
+    } @else {
+      <a class="user-btn signin-btn" routerLink="/auth" aria-label="Se connecter">
+        <lucide-icon [img]="LogIn" [size]="16" [strokeWidth]="1.75" aria-hidden="true"></lucide-icon>
+        <span class="btn-text">Sign In</span>
+      </a>
+    }
+  </div>
 
 </nav>

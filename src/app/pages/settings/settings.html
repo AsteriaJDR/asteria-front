@@ -1,43 +1,53 @@
 <div class="settings-page">
   <div class="settings-container">
+
     <h1 class="page-title">Paramètres</h1>
 
     <section class="settings-section">
-      <h2 class="section-title">
-        <lucide-icon [img]="Lock" [size]="18" [strokeWidth]="1.75"></lucide-icon>
-        Changer le mot de passe
-      </h2>
+      <p class="section-label">
+        <lucide-icon [img]="Lock" [size]="13" [strokeWidth]="2"></lucide-icon>
+        Sécurité
+      </p>
       <div class="card">
-        <div class="field">
-          <label>Mot de passe actuel</label>
-          <input type="password" [(ngModel)]="currentPassword" placeholder="••••••••" />
+        <div class="form-group">
+          <label class="form-label">Mot de passe actuel</label>
+          <div class="input-wrapper">
+            <input type="password" [(ngModel)]="currentPassword" placeholder="••••••••" class="form-input" />
+            <lucide-icon class="input-icon" [img]="Lock" [size]="16" [strokeWidth]="1.75"></lucide-icon>
+          </div>
         </div>
-        <div class="field">
-          <label>Nouveau mot de passe</label>
-          <input type="password" [(ngModel)]="newPassword" placeholder="••••••••" />
+        <div class="form-group">
+          <label class="form-label">Nouveau mot de passe</label>
+          <div class="input-wrapper">
+            <input type="password" [(ngModel)]="newPassword" placeholder="••••••••" class="form-input" />
+            <lucide-icon class="input-icon" [img]="Lock" [size]="16" [strokeWidth]="1.75"></lucide-icon>
+          </div>
         </div>
-        <div class="field">
-          <label>Confirmer le mot de passe</label>
-          <input type="password" [(ngModel)]="confirmPassword" placeholder="••••••••" />
+        <div class="form-group">
+          <label class="form-label">Confirmer le mot de passe</label>
+          <div class="input-wrapper">
+            <input type="password" [(ngModel)]="confirmPassword" placeholder="••••••••" class="form-input" />
+            <lucide-icon class="input-icon" [img]="Lock" [size]="16" [strokeWidth]="1.75"></lucide-icon>
+          </div>
         </div>
         @if (passwordError()) {
-          <p class="error-msg">{{ passwordError() }}</p>
+          <p class="field-error">{{ passwordError() }}</p>
         }
         @if (passwordSuccess()) {
-          <p class="success-msg">Mot de passe modifié avec succès.</p>
+          <p class="field-success">Mot de passe modifié avec succès.</p>
         }
-        <button class="btn-primary" (click)="savePassword()">Enregistrer</button>
+        <button class="submit-btn" (click)="savePassword()">Enregistrer</button>
       </div>
     </section>
 
     <section class="settings-section">
-      <h2 class="section-title">
-        <lucide-icon [img]="Bell" [size]="18" [strokeWidth]="1.75"></lucide-icon>
+      <p class="section-label">
+        <lucide-icon [img]="Bell" [size]="13" [strokeWidth]="2"></lucide-icon>
         Notifications
-      </h2>
+      </p>
       <div class="card">
         <div class="toggle-row">
-          <span>Recevoir les notifications</span>
+          <span class="toggle-label">Recevoir les notifications</span>
           <button class="toggle" [class.active]="notificationsEnabled()" (click)="toggleNotifications()">
             <span class="toggle-knob"></span>
           </button>
@@ -45,20 +55,21 @@
       </div>
     </section>
 
-    <section class="settings-section danger-zone">
-      <h2 class="section-title">
-        <lucide-icon [img]="Trash2" [size]="18" [strokeWidth]="1.75"></lucide-icon>
+    <section class="settings-section">
+      <p class="section-label danger-label">
+        <lucide-icon [img]="Trash2" [size]="13" [strokeWidth]="2"></lucide-icon>
         Zone dangereuse
-      </h2>
-      <div class="card">
+      </p>
+      <div class="card danger-card">
         <div class="danger-row">
           <div>
             <p class="danger-title">Supprimer le compte</p>
-            <p class="danger-desc">Cette action est irréversible.</p>
+            <p class="danger-desc">Cette action est irréversible et supprime toutes vos données.</p>
           </div>
           <button class="btn-danger">Supprimer</button>
         </div>
       </div>
     </section>
+
   </div>
 </div>

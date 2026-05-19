@@ -1,34 +1,42 @@
 .profile-page {
-  min-height: 100vh;
+  min-height: calc(100vh - 110px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6rem 1rem 2rem;
+  padding: 6rem 1rem 3rem;
   background: #fff0d7;
 }
 
 .profile-card {
+  width: 100%;
+  max-width: 440px;
+  background: #233f2e;
+  border-radius: 1rem;
+  padding: 2.5rem;
+  box-shadow:
+    0 4px 32px rgba(0, 0, 0, 0.25),
+    0 2px 8px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+.profile-header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  width: 100%;
-  max-width: 480px;
-  padding: 2.5rem 2rem;
-  background: #1a2e22;
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  gap: 0.75rem;
+  margin-bottom: 2rem;
 }
 
 .avatar {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 96px;
-  height: 96px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  background: #2c4a38;
-  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .username {
@@ -36,22 +44,40 @@
   font-size: 1.5rem;
   font-weight: 700;
   color: #fff;
+  letter-spacing: -0.02em;
 }
 
 .role-badge {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
   padding: 0.25rem 0.75rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 50px;
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
 }
 
-.info-list {
-  width: 100%;
-  margin-top: 1rem;
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.section-label {
+  font-size: 0.675rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 0.75rem;
+}
+
+.info-section {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -60,20 +86,42 @@
 .info-row {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.875rem;
   padding: 0.875rem 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.5rem;
+}
+
+.info-icon {
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.4);
+  flex-shrink: 0;
+}
+
+.info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
 }
 
 .info-label {
-  flex: 1;
-  font-size: 0.85rem;
+  font-size: 0.675rem;
+  font-weight: 700;
   color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .info-value {
   font-size: 0.9rem;
+  color: #fff;
   font-weight: 500;
+}
+
+@media (max-width: 480px) {
+  .profile-card {
+    padding: 2rem 1.5rem;
+  }
 }

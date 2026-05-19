@@ -9,10 +9,6 @@
       <lucide-icon [img]="ScrollText" [size]="16" [strokeWidth]="1.75" aria-hidden="true"></lucide-icon>
       <span class="nav-text">Mes Tables</span>
     </a>
-    <a class="nav-link" routerLink="/shop" routerLinkActive="active" role="menuitem" (click)="isMobileMenuOpen.set(false)">
-      <lucide-icon [img]="ShoppingCart" [size]="16" [strokeWidth]="1.75" aria-hidden="true"></lucide-icon>
-      <span class="nav-text">Magasin</span>
-    </a>
     <a class="nav-link" routerLink="/rules" routerLinkActive="active" role="menuitem" (click)="isMobileMenuOpen.set(false)">
       <lucide-icon [img]="NotebookPen" [size]="16" [strokeWidth]="1.75" aria-hidden="true"></lucide-icon>
       <span class="nav-text">Règles</span>
@@ -25,12 +21,43 @@
 
   <div class="right-section">
     @if (isLoggedIn()) {
-      <button class="icon-btn notification-btn" aria-label="Notifications">
-        <lucide-icon [img]="Bell" [size]="18" [strokeWidth]="1.75"></lucide-icon>
-        @if (notificationCount() > 0) {
-          <span class="notification-badge">{{ notificationCount() }}</span>
+      <div class="notification-container">
+        <button class="icon-btn notification-btn" (click)="toggleNotificationMenu()" [attr.aria-expanded]="isNotificationMenuOpen()" aria-label="Notifications">
+          <lucide-icon [img]="Bell" [size]="18" [strokeWidth]="1.75"></lucide-icon>
+          @if (notificationService.unreadCount() > 0) {
+            <span class="notification-badge">{{ notificationService.unreadCount() }}</span>
+          }
+        </button>
+
+        @if (isNotificationMenuOpen()) {
+          <div class="notification-dropdown" role="menu">
+            <div class="notif-header">
+              <span>Notifications</span>
+              @if (notificationService.unreadCount() > 0) {
+                <button class="mark-all-btn" (click)="notificationService.markAllAsRead()">Tout lire</button>
+              }
+            </div>
+            <div class="notif-list">
+              @for (notif of notificationService.all(); track notif.id) {
+                <div class="notif-item" [class.unread]="!notif.read" (click)="notificationService.markAsRead(notif.id)">
+                  <div class="notif-icon" [class]="'notif-icon--' + notif.type">
+                    <lucide-icon [img]="notificationIcon(notif.type)" [size]="14" [strokeWidth]="2"></lucide-icon>
+                  </div>
+                  <div class="notif-body">
+                    <p class="notif-message">{{ notif.message }}</p>
+                    <span class="notif-date">{{ formatDate(notif.date) }}</span>
+                  </div>
+                  @if (!notif.read) {
+                    <span class="unread-dot"></span>
+                  }
+                </div>
+              } @empty {
+                <p class="notif-empty">Aucune notification</p>
+              }
+            </div>
+          </div>
         }
-      </button>
+      </div>
     }
 
     @if (isLoggedIn()) {
@@ -38,7 +65,7 @@
         <button class="icon-btn profile-btn" (click)="toggleProfileMenu()" [attr.aria-expanded]="isProfileMenuOpen()" aria-label="Profil utilisateur">
           <lucide-icon [img]="User" [size]="18" [strokeWidth]="1.75"></lucide-icon>
         </button>
-        
+
         @if (isProfileMenuOpen()) {
           <div class="profile-dropdown" role="menu">
             <a routerLink="/profile" class="dropdown-item" role="menuitem" (click)="closeProfileMenu()">

@@ -14,11 +14,9 @@ export class Home {
     '/assets/home/warrior-valley.png',
   ];
 
-  /** Index de l'image affichée à chaque position. */
   positions = signal({ left: 0, center: 1, right: 2 });
 
-  /** Animation en cours : 'left' = on a cliqué la carte gauche, 'right' = droite. */
-  cycling = signal<'left' | 'right' | null>(null);
+  cycling = signal<'left' | 'right' | 'rotate' | null>(null);
 
   leftImg = computed(() => this.cards[this.positions().left]);
   centerImg = computed(() => this.cards[this.positions().center]);
@@ -42,5 +40,15 @@ export class Home {
       this.positions.set({ left: p.left, center: p.right, right: p.center });
     }, 250);
     setTimeout(() => this.cycling.set(null), 500);
+  }
+
+  clickCenter(): void {
+    if (this.cycling()) return;
+    this.cycling.set('rotate');
+    setTimeout(() => {
+      const p = this.positions();
+      this.positions.set({ left: p.right, center: p.left, right: p.center });
+    }, 300);
+    setTimeout(() => this.cycling.set(null), 600);
   }
 }

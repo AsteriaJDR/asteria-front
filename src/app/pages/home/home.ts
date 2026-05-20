@@ -1,6 +1,8 @@
 import { Component, computed, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+type Direction = 'forward' | 'backward';
+
 @Component({
   selector: 'app-home',
   imports: [RouterLink],
@@ -14,41 +16,35 @@ export class Home {
     '/assets/home/warrior-valley.png',
   ];
 
+  private static readonly CYCLE_MS = 700;
+
   positions = signal({ left: 0, center: 1, right: 2 });
 
-  cycling = signal<'left' | 'right' | 'rotate' | null>(null);
+  cycling = signal<Direction | null>(null);
 
   leftImg = computed(() => this.cards[this.positions().left]);
   centerImg = computed(() => this.cards[this.positions().center]);
   rightImg = computed(() => this.cards[this.positions().right]);
 
-  clickLeft(): void {
-    if (this.cycling()) return;
-    this.cycling.set('left');
-    setTimeout(() => {
-      const p = this.positions();
-      this.positions.set({ left: p.center, center: p.left, right: p.right });
-    }, 250);
-    setTimeout(() => this.cycling.set(null), 500);
+  stepForward(): void {
+    this.step('forward');
   }
 
-  clickRight(): void {
-    if (this.cycling()) return;
-    this.cycling.set('right');
-    setTimeout(() => {
-      const p = this.positions();
-      this.positions.set({ left: p.left, center: p.right, right: p.center });
-    }, 250);
-    setTimeout(() => this.cycling.set(null), 500);
+  stepBackward(): void {
+    this.step('backward');
   }
 
-  clickCenter(): void {
+  private step(direction: Direction): void {
     if (this.cycling()) return;
-    this.cycling.set('rotate');
+    this.cycling.set(direction);
     setTimeout(() => {
       const p = this.positions();
-      this.positions.set({ left: p.right, center: p.left, right: p.center });
-    }, 300);
-    setTimeout(() => this.cycling.set(null), 600);
+      this.positions.set(
+        direction === 'forward'
+          ? { left: p.center, center: p.right, right: p.left }
+          : { left: p.right, center: p.left, right: p.center },
+      );
+      this.cycling.set(null);
+    }, Home.CYCLE_MS);
   }
 }

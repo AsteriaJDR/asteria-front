@@ -70,11 +70,19 @@
 
 
 .home-cards {
+  --offset-x: 7rem;
+  --side-scale: 0.7;
+  --side-opacity: 0.55;
+  --side-rotate: 8deg;
+  --center-rotate: -1deg;
+  --cycle-duration: 700ms;
+  --cycle-ease: cubic-bezier(0.65, 0, 0.35, 1);
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 26rem;
+  perspective: 1200px;
 }
 
 .home-card-btn {
@@ -83,8 +91,8 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  will-change: transform;
+  transition: transform 0.4s var(--cycle-ease);
+  will-change: transform, opacity;
 }
 
 .home-card-btn:focus {
@@ -106,116 +114,150 @@
   display: block;
 }
 
-.home-cards {
-  --offset-x: 4rem;
-  --hover-x: 5rem;
-}
-
 .home-card-center {
   z-index: 3;
-  transform: rotate(-1deg);
+  transform: translateX(0) scale(1) rotate(var(--center-rotate));
+  opacity: 1;
 }
 
 .home-card-left {
   z-index: 2;
-  transform: translateX(calc(var(--offset-x) * -1)) rotate(-6deg);
+  transform: translateX(calc(var(--offset-x) * -1)) scale(var(--side-scale)) rotate(calc(var(--side-rotate) * -1));
+  opacity: var(--side-opacity);
 }
 
 .home-card-right {
-  z-index: 1;
-  transform: translateX(var(--offset-x)) rotate(6deg);
-}
-
-.home-card-left:hover {
-  transform: translateX(calc(var(--hover-x) * -1)) rotate(-8deg);
-}
-
-.home-card-right:hover {
-  transform: translateX(var(--hover-x)) rotate(8deg);
+  z-index: 2;
+  transform: translateX(var(--offset-x)) scale(var(--side-scale)) rotate(var(--side-rotate));
+  opacity: var(--side-opacity);
 }
 
 .home-card-center:hover {
-  transform: rotate(-1deg) translateY(-6px);
+  transform: translateX(0) scale(1.04) rotate(var(--center-rotate));
+}
+
+.home-card-left:hover {
+  transform: translateX(calc(var(--offset-x) * -1.1)) scale(calc(var(--side-scale) + 0.05)) rotate(calc(var(--side-rotate) * -1));
+  opacity: 0.8;
+}
+
+.home-card-right:hover {
+  transform: translateX(calc(var(--offset-x) * 1.1)) scale(calc(var(--side-scale) + 0.05)) rotate(var(--side-rotate));
+  opacity: 0.8;
 }
 
 
-.home-cards.cycling-left .home-card-left {
-  animation: liftFromLeft 500ms cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 10;
+.home-cards.cycling-forward .home-card-right {
+  animation: rightToCenter var(--cycle-duration) var(--cycle-ease) forwards;
+  z-index: 5;
 }
 
-.home-cards.cycling-left .home-card-center {
-  animation: slideToLeft 500ms cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 2;
-}
-
-@keyframes liftFromLeft {
-  0%   { transform: translateX(calc(var(--offset-x) * -1)) rotate(-6deg) translateY(0) scale(1); }
-  50%  { transform: translateX(0) rotate(-2deg) translateY(-2rem) scale(1.05); }
-  100% { transform: translateX(calc(var(--offset-x) * -1)) rotate(-6deg) translateY(0) scale(1); }
-}
-
-@keyframes slideToLeft {
-  0%   { transform: rotate(-1deg) translate(0, 0); }
-  50%  { transform: translateX(calc(var(--offset-x) * -1)) rotate(-6deg) translateY(0.4rem); }
-  100% { transform: rotate(-1deg) translate(0, 0); }
-}
-
-.home-cards.cycling-right .home-card-right {
-  animation: liftFromRight 500ms cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 10;
-}
-
-.home-cards.cycling-right .home-card-center {
-  animation: slideToRight 500ms cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 2;
-}
-
-@keyframes liftFromRight {
-  0%   { transform: translateX(var(--offset-x)) rotate(6deg) translateY(0) scale(1); }
-  50%  { transform: translateX(0) rotate(2deg) translateY(-2rem) scale(1.05); }
-  100% { transform: translateX(var(--offset-x)) rotate(6deg) translateY(0) scale(1); }
-}
-
-@keyframes slideToRight {
-  0%   { transform: rotate(-1deg) translate(0, 0); }
-  50%  { transform: translateX(var(--offset-x)) rotate(6deg) translateY(0.4rem); }
-  100% { transform: rotate(-1deg) translate(0, 0); }
-}
-
-.home-cards.cycling-rotate .home-card-left {
-  animation: rotateLeftToCenter 600ms cubic-bezier(0.4, 0, 0.2, 1);
+.home-cards.cycling-forward .home-card-center {
+  animation: centerToLeft var(--cycle-duration) var(--cycle-ease) forwards;
   z-index: 4;
 }
 
-.home-cards.cycling-rotate .home-card-center {
-  animation: rotateCenterToRight 600ms cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 3;
-}
-
-.home-cards.cycling-rotate .home-card-right {
-  animation: rotateRightWrap 600ms cubic-bezier(0.4, 0, 0.2, 1);
+.home-cards.cycling-forward .home-card-left {
+  animation: leftWrapToRight var(--cycle-duration) var(--cycle-ease) forwards;
   z-index: 1;
 }
 
-@keyframes rotateLeftToCenter {
-  0%   { transform: translateX(calc(var(--offset-x) * -1)) rotate(-6deg) translateY(0); }
-  50%  { transform: translateX(0) rotate(-1deg) translateY(0.4rem); }
-  100% { transform: translateX(calc(var(--offset-x) * -1)) rotate(-6deg) translateY(0); }
+.home-cards.cycling-backward .home-card-left {
+  animation: leftToCenter var(--cycle-duration) var(--cycle-ease) forwards;
+  z-index: 5;
 }
 
-@keyframes rotateCenterToRight {
-  0%   { transform: rotate(-1deg) translate(0, 0); }
-  50%  { transform: translateX(var(--offset-x)) rotate(6deg) translateY(0.4rem); }
-  100% { transform: rotate(-1deg) translate(0, 0); }
+.home-cards.cycling-backward .home-card-center {
+  animation: centerToRight var(--cycle-duration) var(--cycle-ease) forwards;
+  z-index: 4;
 }
 
-@keyframes rotateRightWrap {
-  0%   { transform: translateX(var(--offset-x)) rotate(6deg) translateY(0) scale(1); }
-  25%  { transform: translateX(calc(var(--offset-x) * 0.5)) rotate(12deg) translateY(-2.5rem) scale(1.05); }
-  50%  { transform: translateX(0) rotate(0deg) translateY(-3rem) scale(1.08); }
-  75%  { transform: translateX(calc(var(--offset-x) * -0.5)) rotate(-12deg) translateY(-2.5rem) scale(1.05); }
-  100% { transform: translateX(var(--offset-x)) rotate(6deg) translateY(0) scale(1); }
+.home-cards.cycling-backward .home-card-right {
+  animation: rightWrapToLeft var(--cycle-duration) var(--cycle-ease) forwards;
+  z-index: 1;
+}
+
+
+@keyframes rightToCenter {
+  0% {
+    transform: translateX(var(--offset-x)) scale(var(--side-scale)) rotate(var(--side-rotate));
+    opacity: var(--side-opacity);
+  }
+  100% {
+    transform: translateX(0) scale(1) rotate(var(--center-rotate));
+    opacity: 1;
+  }
+}
+
+@keyframes centerToLeft {
+  0% {
+    transform: translateX(0) scale(1) rotate(var(--center-rotate));
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(var(--offset-x) * -1)) scale(var(--side-scale)) rotate(calc(var(--side-rotate) * -1));
+    opacity: var(--side-opacity);
+  }
+}
+
+@keyframes leftWrapToRight {
+  0% {
+    transform: translateX(calc(var(--offset-x) * -1)) scale(var(--side-scale)) rotate(calc(var(--side-rotate) * -1));
+    opacity: var(--side-opacity);
+  }
+  35% {
+    transform: translateX(calc(var(--offset-x) * -3)) scale(0) rotate(-25deg);
+    opacity: 0;
+  }
+  35.01% {
+    transform: translateX(calc(var(--offset-x) * 3)) scale(0) rotate(25deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(var(--offset-x)) scale(var(--side-scale)) rotate(var(--side-rotate));
+    opacity: var(--side-opacity);
+  }
+}
+
+@keyframes leftToCenter {
+  0% {
+    transform: translateX(calc(var(--offset-x) * -1)) scale(var(--side-scale)) rotate(calc(var(--side-rotate) * -1));
+    opacity: var(--side-opacity);
+  }
+  100% {
+    transform: translateX(0) scale(1) rotate(var(--center-rotate));
+    opacity: 1;
+  }
+}
+
+@keyframes centerToRight {
+  0% {
+    transform: translateX(0) scale(1) rotate(var(--center-rotate));
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(var(--offset-x)) scale(var(--side-scale)) rotate(var(--side-rotate));
+    opacity: var(--side-opacity);
+  }
+}
+
+@keyframes rightWrapToLeft {
+  0% {
+    transform: translateX(var(--offset-x)) scale(var(--side-scale)) rotate(var(--side-rotate));
+    opacity: var(--side-opacity);
+  }
+  35% {
+    transform: translateX(calc(var(--offset-x) * 3)) scale(0) rotate(25deg);
+    opacity: 0;
+  }
+  35.01% {
+    transform: translateX(calc(var(--offset-x) * -3)) scale(0) rotate(-25deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(calc(var(--offset-x) * -1)) scale(var(--side-scale)) rotate(calc(var(--side-rotate) * -1));
+    opacity: var(--side-opacity);
+  }
 }
 
 
@@ -277,8 +319,7 @@
 
   .home-cards {
     height: 22rem;
-    --offset-x: 3.25rem;
-    --hover-x: 4.25rem;
+    --offset-x: 5.5rem;
   }
 }
 
@@ -311,8 +352,7 @@
   .home-cards {
     height: 20rem;
     order: -1;
-    --offset-x: 3rem;
-    --hover-x: 3.75rem;
+    --offset-x: 5rem;
   }
 
   .home-card {
@@ -351,7 +391,6 @@
 
   .home-cards {
     height: 17rem;
-    --offset-x: 2.5rem;
-    --hover-x: 3rem;
+    --offset-x: 4rem;
   }
 }

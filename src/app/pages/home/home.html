@@ -27,33 +27,32 @@
 
     <div
       class="home-cards"
-      [class.cycling-left]="cycling() === 'left'"
-      [class.cycling-right]="cycling() === 'right'"
-      [class.cycling-rotate]="cycling() === 'rotate'"
+      [class.cycling-forward]="cycling() === 'forward'"
+      [class.cycling-backward]="cycling() === 'backward'"
       role="region"
       aria-label="Carrousel d'illustrations"
     >
       <button
         type="button"
         class="home-card-btn home-card-left"
-        (click)="clickLeft()"
-        aria-label="Mettre cette image au centre"
+        (click)="stepBackward()"
+        aria-label="Carte précédente"
       >
         <img [src]="leftImg()" alt="" class="home-card" aria-hidden="true" />
       </button>
       <button
         type="button"
         class="home-card-btn home-card-center"
-        (click)="clickCenter()"
-        aria-label="Faire tourner les cartes"
+        (click)="stepForward()"
+        aria-label="Carte suivante"
       >
         <img [src]="centerImg()" alt="" class="home-card" aria-hidden="true" />
       </button>
       <button
         type="button"
         class="home-card-btn home-card-right"
-        (click)="clickRight()"
-        aria-label="Mettre cette image au centre"
+        (click)="stepForward()"
+        aria-label="Carte suivante"
       >
         <img [src]="rightImg()" alt="" class="home-card" aria-hidden="true" />
       </button>

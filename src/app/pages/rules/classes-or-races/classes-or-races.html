@@ -1,10 +1,15 @@
 <div class="main">
     @if (classesOrRaces && classesOrRaces.length > 0) {
         <div class="image-and-icons">
-            <img src="assets/logo/asteria-logo.webp" alt="Logo Asteria" class="class-or-race-image">
+            <img [src]="'assets/' + classesOrRaces[selectedClassIndex].imageUrl" [alt]="classesOrRaces[selectedClassIndex].name" class="class-or-race-image">
             <div class="icons">
                 @for(class of classesOrRaces; track class.id; let i = $index) {
-                    <div class="hexagon" (click)="selectedClassIndex = i">
+                    <div class="hexagon-border" (click)="selectedClassIndex = i">
+                        <div class="hexagon-inner">
+                            <div class="hexagon" 
+                                [style.background-image]="'url(assets/' + class.imageUrl + ')'">
+                            </div>
+                        </div>
                     </div>
                 }
             </div>

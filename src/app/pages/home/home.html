@@ -29,6 +29,7 @@
       class="home-cards"
       [class.cycling-left]="cycling() === 'left'"
       [class.cycling-right]="cycling() === 'right'"
+      [class.cycling-rotate]="cycling() === 'rotate'"
       role="region"
       aria-label="Carrousel d'illustrations"
     >
@@ -40,9 +41,14 @@
       >
         <img [src]="leftImg()" alt="" class="home-card" aria-hidden="true" />
       </button>
-      <div class="home-card-btn home-card-center" aria-hidden="true">
-        <img [src]="centerImg()" alt="" class="home-card" />
-      </div>
+      <button
+        type="button"
+        class="home-card-btn home-card-center"
+        (click)="clickCenter()"
+        aria-label="Faire tourner les cartes"
+      >
+        <img [src]="centerImg()" alt="" class="home-card" aria-hidden="true" />
+      </button>
       <button
         type="button"
         class="home-card-btn home-card-right"

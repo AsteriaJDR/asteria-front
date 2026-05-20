@@ -1,1 +1,60 @@
-<app-wip pageName="Page d'accueil"></app-wip>
+<section class="home-page">
+  <div class="home-banner">
+    <img src="/assets/home/banner-party.png" alt="" class="home-banner-img" aria-hidden="true" />
+  </div>
+
+  <div class="home-title">
+    <img src="/assets/home/asteria-title.png" alt="Asteria" class="home-title-img" />
+  </div>
+
+  <div class="home-content">
+    <div class="home-text">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur.
+      </p>
+      <p>
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+        officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde
+        omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+        architecto beatae vitae dicta sunt explicabo.
+      </p>
+    </div>
+
+    <div
+      class="home-cards"
+      [class.cycling-left]="cycling() === 'left'"
+      [class.cycling-right]="cycling() === 'right'"
+      role="region"
+      aria-label="Carrousel d'illustrations"
+    >
+      <button
+        type="button"
+        class="home-card-btn home-card-left"
+        (click)="clickLeft()"
+        aria-label="Mettre cette image au centre"
+      >
+        <img [src]="leftImg()" alt="" class="home-card" aria-hidden="true" />
+      </button>
+      <div class="home-card-btn home-card-center" aria-hidden="true">
+        <img [src]="centerImg()" alt="" class="home-card" />
+      </div>
+      <button
+        type="button"
+        class="home-card-btn home-card-right"
+        (click)="clickRight()"
+        aria-label="Mettre cette image au centre"
+      >
+        <img [src]="rightImg()" alt="" class="home-card" aria-hidden="true" />
+      </button>
+    </div>
+  </div>
+
+  <div class="home-cta">
+    <a routerLink="/rules" class="home-cta-btn">Découvrir Asteria</a>
+  </div>
+</section>

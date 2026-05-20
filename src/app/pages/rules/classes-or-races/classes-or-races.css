@@ -39,12 +39,11 @@
 
 .icons {
     display: flex;
-    flex-wrap: wrap;
-    width: 100%;
     justify-content: center;
     gap: 1rem;
     align-items: center;
     margin-bottom: 1rem;
+    align-items: end;
 }
 
 .hexagon-border {

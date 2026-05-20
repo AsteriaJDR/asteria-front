@@ -36,6 +36,13 @@ body {
   overflow-x: hidden;
 }
 
+/* La home page doit pouvoir s'échapper du conteneur (banner full-bleed sous la navbar) */
+.main-content:has(app-home) {
+  margin-top: 0;
+  padding: 0 0 28px;
+  overflow: visible;
+}
+
 @media (max-width: 768px) {
   html {
     background-color: #2c4a38;
@@ -51,5 +58,9 @@ body {
     padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px) + 12px);
     min-height: 100vh;
     overflow-x: hidden;
+  }
+
+  .main-content:has(app-home) {
+    padding: 0 0 calc(64px + env(safe-area-inset-bottom, 0px) + 12px);
   }
 }

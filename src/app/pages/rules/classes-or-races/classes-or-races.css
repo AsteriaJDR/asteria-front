@@ -1,27 +1,66 @@
 .main {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 1rem;
+    overflow: visible;
 }
 
 .image-and-icons {
-    max-height: 20rem;
-    max-width: 20rem;
     display: flex;
     flex-direction: row;
-}
-
-@media (max-width: 768px) {
-    .image-and-icons {
-        max-height: 10rem;
-        max-width: 10rem;
-        flex-direction: column;
-        align-items: center;
-    }
+    align-items: flex-end;
+    gap: 1rem;
+    overflow: visible;
+    width: 100%;
 }
 
 .class-or-race-image {
-    margin: 0 1rem;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: flex-start;
+    align-content: flex-start;
+    overflow: visible;
+    min-width: 0;
+    flex: 1;
+    margin-bottom: 1rem;
+    justify-content: flex-end;
+}
+
+.hexagon-border {
+    width: clamp(50px, 12vw, 108px);
+    height: clamp(58px, 14vw, 124px);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.hexagon-inner {
+    width: 95%;
+    height: 95%;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background-color: #FFF0D7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hexagon {
+    width: 90%;
+    height: 90%;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background-size: cover;
+    background-position: center;
 }
 
 .description {
@@ -37,40 +76,9 @@
     margin-bottom: 10px;
 }
 
-.icons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    align-items: center;
-    margin-bottom: 1rem;
-    align-items: end;
-}
-
-.hexagon-border {
-    width: 108px;
-    height: 124px;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-.hexagon-inner {
-    width: 102px;
-    height: 118px;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    background-color: #FFF0D7;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.hexagon {
-    width: 97px;
-    height: 112px;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    background-size: cover;
-    background-position: center;
+@media (max-width: 768px) {
+    .class-or-race-image {
+        width: 150px;
+        height: 150px;
+    }
 }

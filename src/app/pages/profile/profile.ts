@@ -1,8 +1,8 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth/auth-service';
-import { LucideAngularModule, User, Mail, Shield, Settings, Lock, Bell, Trash2 } from 'lucide-angular';
+import { LucideAngularModule, User, Mail, Shield, Settings, Lock, Bell, Trash2, LogOut } from 'lucide-angular';
 
 @Component({
   selector: 'app-profile',
@@ -18,10 +18,22 @@ export class Profile implements OnInit {
   readonly Lock = Lock;
   readonly Bell = Bell;
   readonly Trash2 = Trash2;
+  readonly LogOut = LogOut;
 
   activeTab = signal<'profile' | 'settings'>('profile');
 
-  constructor(public authService: AuthService, private route: ActivatedRoute) {}
+  constructor(
+    public authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {}
+
+  logout(): void {
+    this.authService.logout().subscribe({
+      next: () => this.router.navigateByUrl('/'),
+      error: () => this.router.navigateByUrl('/'),
+    });
+  }
 
   ngOnInit(): void {
     const tab = this.route.snapshot.data['tab'];

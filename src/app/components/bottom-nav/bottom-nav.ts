@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import {
   LucideAngularModule,
@@ -9,6 +9,7 @@ import {
   NotebookPen,
   Home,
 } from 'lucide-angular';
+import { AuthService } from '../../core/services/auth/auth-service';
 
 @Component({
   selector: 'app-bottom-nav',
@@ -23,4 +24,10 @@ export class BottomNavComponent {
   readonly User = User;
   readonly NotebookPen = NotebookPen;
   readonly Home = Home;
+
+  private readonly authService = inject(AuthService);
+
+  get profileLink(): string {
+    return this.authService.getCurrentUser() ? '/profile' : '/auth';
+  }
 }

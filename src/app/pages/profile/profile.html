@@ -117,6 +117,25 @@
         <div class="divider"></div>
 
         <div class="content-section">
+          <p class="section-label">
+            <lucide-icon [img]="LogOut" [size]="13" [strokeWidth]="2"></lucide-icon>
+            Session
+          </p>
+          <div class="logout-row">
+            <div>
+              <p class="logout-title">Se déconnecter</p>
+              <p class="logout-desc">Fermer votre session sur cet appareil.</p>
+            </div>
+            <button class="btn-logout" (click)="logout()">
+              <lucide-icon [img]="LogOut" [size]="14" [strokeWidth]="2"></lucide-icon>
+              Déconnexion
+            </button>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="content-section">
           <p class="section-label danger-label">
             <lucide-icon [img]="Trash2" [size]="13" [strokeWidth]="2"></lucide-icon>
             Zone dangereuse

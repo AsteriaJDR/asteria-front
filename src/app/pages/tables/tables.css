@@ -139,7 +139,6 @@
   margin: 0;
   font-size: 18px;
   font-weight: bold;
-  font-family: monospace;
   color: #4a9d6f;
 }
 
@@ -355,14 +354,14 @@
 /* === Mobile : pas de navbar haute, on rapproche les modales du haut === */
 @media (max-width: 768px) {
   .modal-overlay {
-    padding: 20px 16px;
+    padding: 20px 16px calc(64px + env(safe-area-inset-bottom, 0px) + 20px);
     align-items: flex-start;
   }
 
   .modal-content {
     padding: 20px;
     border-radius: 22px;
-    max-height: calc(100dvh - 40px);
+    max-height: calc(100dvh - 40px - 64px - env(safe-area-inset-bottom, 0px));
   }
 
   .modal-body {
@@ -470,13 +469,13 @@
   }
 
   .modal-overlay {
-    padding: 12px;
+    padding: 12px 12px calc(64px + env(safe-area-inset-bottom, 0px) + 12px);
   }
 
   .modal-content {
     padding: 16px;
     border-radius: 18px;
-    max-height: calc(100dvh - 24px);
+    max-height: calc(100dvh - 24px - 64px - env(safe-area-inset-bottom, 0px));
   }
 
   .modal-right h2 {

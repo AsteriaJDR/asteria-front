@@ -11,6 +11,10 @@ html, body {
   background-color: #FFF0D7;
 }
 
+input, button, select, textarea {
+  font-family: inherit;
+}
+
 ::-webkit-scrollbar {
   width: 12px;
 }

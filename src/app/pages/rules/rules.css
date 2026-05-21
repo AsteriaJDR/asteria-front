@@ -6,10 +6,10 @@
 
 .rules-container {
     width: 100%;
-    max-width: 400px; /* Évite que ça soit trop large sur grand écran */
+    max-width: 400px; 
     display: flex;
     flex-direction: column;
-    gap: 1rem; /* Espace entre les boutons au lieu du padding interne */
+    gap: 1rem; 
     background-color: #2c4a38;
     padding: 1.5rem;
     border-radius: 12px;
@@ -17,7 +17,7 @@
 }
 
 .rule-card {
-    background-color: rgba(255, 255, 255, 0.05); /* Léger contraste */
+    background-color: rgba(255, 255, 255, 0.05); 
     color: white;
     padding: 1.2rem;
     text-align: center;
@@ -27,18 +27,16 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s ease; /* Animation fluide */
+    transition: all 0.3s ease; 
 }
 
-/* L'effet de survol */
 .rule-card:hover {
     background-color: #3a5a48;
-    transform: translateY(-2px); /* Petit effet de levée */
+    transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Effet au clic */
 .rule-card:active {
     transform: translateY(0);
 }

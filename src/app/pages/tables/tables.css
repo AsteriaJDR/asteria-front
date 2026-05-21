@@ -322,9 +322,193 @@
   color: #000;
 }
 
+/* === Tablette === */
+@media (max-width: 900px) {
+  .tables-page {
+    padding: 6px 20px 20px;
+  }
+
+  .actions-row {
+    gap: 16px;
+  }
+
+  .action-pill {
+    padding: 18px;
+    font-size: 17px;
+  }
+
+  .cards-grid {
+    gap: 32px;
+    padding-top: 8px;
+  }
+
+  .stories-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .modal-content {
+    padding: 22px;
+  }
+}
+
+/* === Mobile : pas de navbar haute, on rapproche les modales du haut === */
 @media (max-width: 768px) {
+  .modal-overlay {
+    padding: 20px 16px;
+    align-items: flex-start;
+  }
+
+  .modal-content {
+    padding: 20px;
+    border-radius: 22px;
+    max-height: calc(100dvh - 40px);
+  }
+
   .modal-body {
     grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .modal-close {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .modal-right {
+    gap: 12px;
+  }
+
+  .modal-right h2 {
+    font-size: 22px;
+    padding-right: 40px;
+  }
+
+  .modal-right h3 {
+    font-size: 16px;
+  }
+
+  .modal-image {
+    height: 160px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .modal-params-btn,
+  .modal-play-btn {
+    padding: 14px;
+    width: 100%;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    font-size: 16px;
+    padding: 10px 12px;
+  }
+
+  .file-input {
+    font-size: 14px;
+  }
+
+  .image-preview {
+    max-height: 130px;
+  }
+}
+
+/* === Mobile compact === */
+@media (max-width: 600px) {
+  .tables-page {
+    padding: 4px 12px 14px;
+  }
+
+  .actions-row {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .action-pill {
+    padding: 14px;
+    font-size: 15px;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25);
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding-top: 6px;
+  }
+
+  .card {
+    height: 140px;
+  }
+
+  .card-title {
+    font-size: 16px;
+  }
+
+  .card-footer {
+    font-size: 14px;
+  }
+
+  .stories-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .story-card-image,
+  .story-card-text {
+    height: 110px;
+  }
+
+  .modal-overlay {
+    padding: 12px;
+  }
+
+  .modal-content {
+    padding: 16px;
+    border-radius: 18px;
+    max-height: calc(100dvh - 24px);
+  }
+
+  .modal-right h2 {
+    font-size: 20px;
+  }
+
+  .modal-image {
+    height: 140px;
+  }
+
+  .form-group {
+    margin-bottom: 10px;
+  }
+
+  .join-table-modal {
+    max-width: 100%;
+  }
+}
+
+/* === Très petits écrans === */
+@media (max-width: 380px) {
+  .modal-content {
+    padding: 14px;
+  }
+
+  .modal-right h2 {
+    font-size: 18px;
+  }
+
+  .action-pill {
+    font-size: 14px;
+    padding: 12px;
   }
 }
 

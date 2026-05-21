@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     padding: 1rem;
+    gap: 1.5rem;
     overflow: visible;
 }
 
@@ -67,7 +68,8 @@
     border-radius: 10px;
     background-color: #BE5432;
     color: white;
-    padding: 1rem;
+    padding: 1.25rem;
+    line-height: 1.5;
 }
 
 .class-or-race-name {
@@ -76,9 +78,58 @@
     margin-bottom: 10px;
 }
 
-@media (max-width: 768px) {
+/* === Tablette : on empile image + icônes === */
+@media (max-width: 900px) {
+    .image-and-icons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+    }
+
+    .icons {
+        justify-content: center;
+        margin-bottom: 0;
+        width: 100%;
+    }
+}
+
+/* === Mobile === */
+@media (max-width: 600px) {
+    .main {
+        padding: 0.75rem;
+        gap: 1rem;
+    }
+
     .class-or-race-image {
-        width: 150px;
-        height: 150px;
+        width: 100%;
+        max-width: 280px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+
+    .hexagon-border {
+        width: 64px;
+        height: 74px;
+    }
+
+    .description {
+        padding: 1rem;
+        font-size: 0.95rem;
+    }
+
+    .class-or-race-name {
+        font-size: 1.3em;
+    }
+}
+
+/* === Petits mobiles === */
+@media (max-width: 380px) {
+    .hexagon-border {
+        width: 54px;
+        height: 62px;
+    }
+
+    .class-or-race-name {
+        font-size: 1.15em;
     }
 }

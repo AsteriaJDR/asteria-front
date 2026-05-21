@@ -8,11 +8,13 @@ interface Campaign {
   status: string;
   players: string;
   image: string;
+  description: string;
 }
 
 interface Story {
   id: number;
   title: string;
+  description: string;
 }
 
 @Component({
@@ -25,14 +27,61 @@ interface Story {
 
 export class Tables {
   campaigns: Campaign[] = [
-    {id: 1, title: 'Campagne n°1', status: 'Ouverte', players: '2/6', image: '/table1.png'},
-    {id: 2, title: 'Campagne n°2', status: 'En cours', players: '4/6', image: '/table2.png'},
-    {id: 3, title: 'Campagne n°3', status: 'Fermée', players: '6/6', image: '/table3.png'},
-    {id: 4, title: 'Campagne n°4', status: 'Ouverte', players: '1/6', image: '/table4.png'}
+    {
+      id: 1,
+      title: 'Légende Steampunk',
+      status: 'Ouverte',
+      players: '2/6',
+      image: '/table1.png',
+      description: "Aétheris, continent de métal et de vapeur, s'est effondré le jour où Valérius Kane activa la Foreuse Solaire pour puiser l'énergie du Cœur de gravité. Le Château de Kalausi, arraché à la terre par l'explosion, dérive depuis dans les tourbillons d'Asteria."
+    },
+    {
+      id: 2,
+      title: 'Le Phare des Profondeurs',
+      status: 'En cours',
+      players: '4/6',
+      image: '/table2.png',
+      description: "Au plus profond des abysses brille « L'Étoile d'En-Bas », le marteau d'un Paladin Nain qui se serait sacrifié pour repousser une invasion de monstres. Derrière la légende se cache en réalité un ancien réacteur géothermique d'une cité steampunk engloutie."
+    },
+    {
+      id: 3,
+      title: 'Le Bastion de Cuivre',
+      status: 'Fermée',
+      players: '6/6',
+      image: '/table3.png',
+      description: "Un Nain Paladin en armure à vapeur soutint pendant sept jours la voûte d'acier d'une cité-usine effondrée pour laisser fuir son peuple, devenant une statue de métal et de roc. Retrouvez ses vestiges pour récupérer les plaques de son armure réputée impénétrable."
+    },
+    {
+      id: 4,
+      title: "L'Ombre du Smog",
+      status: 'Ouverte',
+      players: '1/6',
+      image: '/table4.png',
+      description: "Croquemitaine des bas-fonds, un Thérianthrope Moine se bat à mains nues parmi les cheminées et les tuyaux d'une métropole noyée dans le smog. Son monastère est caché tout en haut des plus hautes cheminées, là où l'air redevient pur."
+    }
   ];
 
   stories: Story[] = [
-    {id: 1, title: 'Histoire N°1'}
+    {
+      id: 1,
+      title: 'Légende Steampunk',
+      description: "Aétheris, continent de métal et de vapeur, s'est effondré le jour où Valérius Kane activa la Foreuse Solaire pour puiser l'énergie du Cœur de gravité. Le Château de Kalausi, arraché à la terre par l'explosion, dérive depuis dans les tourbillons d'Asteria."
+    },
+    {
+      id: 2,
+      title: 'Le Phare des Profondeurs',
+      description: "Au plus profond des abysses brille « L'Étoile d'En-Bas », le marteau d'un Paladin Nain qui se serait sacrifié pour repousser une invasion de monstres. Derrière la légende se cache en réalité un ancien réacteur géothermique d'une cité steampunk engloutie."
+    },
+    {
+      id: 3,
+      title: 'Le Bastion de Cuivre',
+      description: "Un Nain Paladin en armure à vapeur soutint pendant sept jours la voûte d'acier d'une cité-usine effondrée pour laisser fuir son peuple, devenant une statue de métal et de roc. Retrouvez ses vestiges pour récupérer les plaques de son armure réputée impénétrable."
+    },
+    {
+      id: 4,
+      title: "L'Ombre du Smog",
+      description: "Croquemitaine des bas-fonds, un Thérianthrope Moine se bat à mains nues parmi les cheminées et les tuyaux d'une métropole noyée dans le smog. Son monastère est caché tout en haut des plus hautes cheminées, là où l'air redevient pur."
+    }
   ];
 
   selectedCampaign: Campaign | null = null;
@@ -110,7 +159,8 @@ export class Tables {
         title: this.newTable.title,
         status: 'Ouverte',
         players: `0/${this.newTable.maxPlayers}`,
-        image: this.newTable.image || '/table1.png'
+        image: this.newTable.image || '/table1.png',
+        description: this.newTable.description || this.selectedStory.description
       };
       this.campaigns.push(newCampaign);
       this.closeCreateTableModal();

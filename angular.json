@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "temp-project": {
+    "asteria-front": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -66,10 +66,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "temp-project:build:production"
+              "buildTarget": "asteria-front:build:production"
             },
             "development": {
-              "buildTarget": "temp-project:build:development"
+              "buildTarget": "asteria-front:build:development"
             }
           },
           "defaultConfiguration": "development"

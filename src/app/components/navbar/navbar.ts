@@ -1,5 +1,4 @@
 import { Component, signal, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import {
   LucideAngularModule,
@@ -23,7 +22,7 @@ import { NotificationService } from '../../core/services/notification/notificati
   selector: 'app-navbar',
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
-  imports: [CommonModule, RouterLink, RouterLinkActive, LucideAngularModule],
+  imports: [RouterLink, RouterLinkActive, LucideAngularModule],
 })
 export class NavbarComponent {
   readonly User = User;

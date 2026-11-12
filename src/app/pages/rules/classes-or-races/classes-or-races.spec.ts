@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
 
 import { ClassesOrRaces } from './classes-or-races';
 
@@ -8,7 +9,8 @@ describe('ClassesOrRaces', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ClassesOrRaces]
+      imports: [ClassesOrRaces],
+      providers: [provideHttpClient()],
     })
     .compileComponents();
 

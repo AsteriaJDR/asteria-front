@@ -37,7 +37,7 @@ export class AuthService {
       );
   }
 
-  signup(credentials: SignupCredentials): Observable<any> {
+  signup(credentials: SignupCredentials): Observable<SignupResponse> {
     return this.http.post<SignupResponse>(`${this.AUTH_API_URL}/signup`, credentials, {withCredentials: true})
       .pipe(
         tap((response: SignupResponse) => this.setCurrentUser(response.user))
@@ -48,8 +48,8 @@ export class AuthService {
     return this.http.get<User>(`${this.AUTH_API_URL}/me`, {withCredentials: true});
   }
 
-  logout(): Observable<any> {
-    return this.http.post<any>(`${this.AUTH_API_URL}/logout`, {}, {withCredentials: true})
+  logout(): Observable<{ message: string }> {
+    return this.http.post<{ message: string }>(`${this.AUTH_API_URL}/logout`, {}, {withCredentials: true})
       .pipe(
         tap(() => this.removeCurrentUser())
       );

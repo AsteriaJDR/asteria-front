@@ -1,5 +1,5 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -10,9 +10,7 @@ import {
   AlertCircle,
   Eye,
   EyeOff,
-  LockKeyhole,
   LucideAngularModule,
-  Mail,
   Square,
   SquareCheckBig,
   User,
@@ -20,7 +18,7 @@ import {
 
 @Component({
   selector: 'app-auth',
-  imports: [ReactiveFormsModule, LucideAngularModule, CommonModule],
+  imports: [ReactiveFormsModule, LucideAngularModule],
   templateUrl: './auth.html',
   styleUrl: './auth.css',
 })
@@ -46,7 +44,7 @@ export class Auth implements OnInit, OnDestroy {
   errorMessage = '';
 
   protected readonly icons = {
-    ArrowRight, AtSign, AlertCircle, Eye, EyeOff, LockKeyhole, Mail, Square, SquareCheckBig, User,
+    ArrowRight, AtSign, AlertCircle, Eye, EyeOff, Square, SquareCheckBig, User,
   };
 
   readonly signinForm: FormGroup = this.fb.group({

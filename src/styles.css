@@ -1,12 +1,9 @@
-@import "tailwindcss";
-
-/* Import Nerd Font */
-@import url('https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@master/css/nerd-fonts-generated.css');
+@import "reset.css" layer(base);
 
 html, body {
   height: 100%;
   margin: 0;
-  font-family: "CaskaydiaMono Nerd Font", "Cascadia Mono", monospace, sans-serif;
+  font-family: "Cascadia Mono", monospace;
   overflow-x: hidden;
   background-color: #FFF0D7;
 }

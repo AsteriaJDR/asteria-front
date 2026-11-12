@@ -2,9 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import {
   LucideAngularModule,
-  Users,
   ScrollText,
-  ShoppingCart,
   User,
   NotebookPen,
   Home,
@@ -18,9 +16,7 @@ import { AuthService } from '../../core/services/auth/auth-service';
   imports: [RouterLink, RouterLinkActive, LucideAngularModule],
 })
 export class BottomNavComponent {
-  readonly Users = Users;
   readonly ScrollText = ScrollText;
-  readonly ShoppingCart = ShoppingCart;
   readonly User = User;
   readonly NotebookPen = NotebookPen;
   readonly Home = Home;

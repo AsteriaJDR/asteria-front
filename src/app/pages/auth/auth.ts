@@ -10,9 +10,7 @@ import {
   AlertCircle,
   Eye,
   EyeOff,
-  LockKeyhole,
   LucideAngularModule,
-  Mail,
   Square,
   SquareCheckBig,
   User,
@@ -46,7 +44,7 @@ export class Auth implements OnInit, OnDestroy {
   errorMessage = '';
 
   protected readonly icons = {
-    ArrowRight, AtSign, AlertCircle, Eye, EyeOff, LockKeyhole, Mail, Square, SquareCheckBig, User,
+    ArrowRight, AtSign, AlertCircle, Eye, EyeOff, Square, SquareCheckBig, User,
   };
 
   readonly signinForm: FormGroup = this.fb.group({

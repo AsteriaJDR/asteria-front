@@ -4,12 +4,12 @@
     <lucide-icon [img]="isMobileMenuOpen() ? X : Menu" [size]="20" [strokeWidth]="1.75"></lucide-icon>
   </button>
 
-  <div class="nav-links" role="menubar" [class.mobile-open]="isMobileMenuOpen()">
-    <a class="nav-link" routerLink="/tables" routerLinkActive="active" role="menuitem" (click)="isMobileMenuOpen.set(false)">
+  <div class="nav-links" [class.mobile-open]="isMobileMenuOpen()">
+    <a class="nav-link" routerLink="/tables" routerLinkActive="active" (click)="isMobileMenuOpen.set(false)">
       <lucide-icon [img]="ScrollText" [size]="16" [strokeWidth]="1.75" aria-hidden="true"></lucide-icon>
       <span class="nav-text">Mes Tables</span>
     </a>
-    <a class="nav-link" routerLink="/rules" routerLinkActive="active" role="menuitem" (click)="isMobileMenuOpen.set(false)">
+    <a class="nav-link" routerLink="/rules" routerLinkActive="active" (click)="isMobileMenuOpen.set(false)">
       <lucide-icon [img]="NotebookPen" [size]="16" [strokeWidth]="1.75" aria-hidden="true"></lucide-icon>
       <span class="nav-text">Règles</span>
     </a>

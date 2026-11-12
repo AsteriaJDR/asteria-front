@@ -1,11 +1,12 @@
 import { Component, computed, signal } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 type Direction = 'forward' | 'backward';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink],
+  imports: [RouterLink, NgOptimizedImage],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

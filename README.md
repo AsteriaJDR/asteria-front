@@ -33,7 +33,19 @@ npm test -- --watch=false --browsers=ChromeHeadless
 npm run build
 ```
 
-Compile l'application en mode production dans `dist/asteria-front/`.
+Compile l'application en mode production dans `dist/asteria-front/`. Les pages publiques qui ne dépendent pas de l'API (`/`, `/rules`, `/contacts`, `/auth`) sont pré-rendues à la compilation (`dist/asteria-front/browser/<route>/index.html`) ; les autres routes (`/rules/classes`, `/rules/races`, `/tables`, `/profile`, `/settings`) restent en rendu client et sont servies via `index.csr.html`.
+
+## Configuration du site (`src/site.config.json`)
+
+Nom du site, locale, couleur de thème, description par défaut et `siteUrl`. `siteUrl` reste vide jusqu'à ce qu'un nom de domaine de production existe : tant qu'il est vide, aucune URL absolue n'est générée (pas de `canonical`, `og:url`, `og:image` ni `sitemap.xml`).
+
+## Sitemap
+
+```bash
+npm run sitemap
+```
+
+Lit `src/site.config.json` et, si `siteUrl` est renseigné, écrit `sitemap.xml` dans `dist/asteria-front/browser/` (routes publiques indexables uniquement) et ajoute la ligne `Sitemap:` à son `robots.txt`. Si `siteUrl` est vide, ne génère rien. Ce script tourne après le build (voir `Dockerfile`) et ne modifie jamais `public/robots.txt`.
 
 ## Docker
 
@@ -42,7 +54,7 @@ docker build -t asteria-front .
 docker run -p 80:80 asteria-front
 ```
 
-L'image sert le build de production via nginx (voir `nginx.conf`).
+L'image compile l'application, génère le sitemap, puis sert le résultat via nginx (voir `nginx.conf`) — aucun serveur Node en production.
 
 ## Structure des dossiers
 

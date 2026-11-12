@@ -19,7 +19,6 @@ interface Story {
 
 @Component({
   selector: 'app-tables',
-  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './tables.html',
   styleUrls: ['./tables.css']

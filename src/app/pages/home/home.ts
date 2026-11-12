@@ -11,9 +11,9 @@ type Direction = 'forward' | 'backward';
 })
 export class Home {
   readonly cards = [
-    '/assets/home/sunset-temple.png',
-    '/assets/home/dragon-castle.png',
-    '/assets/home/warrior-valley.png',
+    '/assets/home/sunset-temple.webp',
+    '/assets/home/dragon-castle.webp',
+    '/assets/home/warrior-valley.webp',
   ];
 
   private static readonly CYCLE_MS = 700;

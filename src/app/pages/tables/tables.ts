@@ -30,7 +30,7 @@ export class Tables {
       title: 'Légende Steampunk',
       status: 'Ouverte',
       players: '2/6',
-      image: '/table1.png',
+      image: '/table1.webp',
       description: "Aétheris, continent de métal et de vapeur, s'est effondré le jour où Valérius Kane activa la Foreuse Solaire pour puiser l'énergie du Cœur de gravité. Le Château de Kalausi, arraché à la terre par l'explosion, dérive depuis dans les tourbillons d'Asteria."
     },
     {
@@ -38,7 +38,7 @@ export class Tables {
       title: 'Le Phare des Profondeurs',
       status: 'En cours',
       players: '4/6',
-      image: '/table2.png',
+      image: '/table2.webp',
       description: "Au plus profond des abysses brille « L'Étoile d'En-Bas », le marteau d'un Paladin Nain qui se serait sacrifié pour repousser une invasion de monstres. Derrière la légende se cache en réalité un ancien réacteur géothermique d'une cité steampunk engloutie."
     },
     {
@@ -46,7 +46,7 @@ export class Tables {
       title: 'Le Bastion de Cuivre',
       status: 'Fermée',
       players: '6/6',
-      image: '/table3.png',
+      image: '/table3.webp',
       description: "Un Nain Paladin en armure à vapeur soutint pendant sept jours la voûte d'acier d'une cité-usine effondrée pour laisser fuir son peuple, devenant une statue de métal et de roc. Retrouvez ses vestiges pour récupérer les plaques de son armure réputée impénétrable."
     },
     {
@@ -54,7 +54,7 @@ export class Tables {
       title: "L'Ombre du Smog",
       status: 'Ouverte',
       players: '1/6',
-      image: '/table4.png',
+      image: '/table4.webp',
       description: "Croquemitaine des bas-fonds, un Thérianthrope Moine se bat à mains nues parmi les cheminées et les tuyaux d'une métropole noyée dans le smog. Son monastère est caché tout en haut des plus hautes cheminées, là où l'air redevient pur."
     }
   ];
@@ -157,7 +157,7 @@ export class Tables {
         title: this.newTable.title,
         status: 'Ouverte',
         players: `0/${this.newTable.maxPlayers}`,
-        image: this.newTable.image || '/table1.png',
+        image: this.newTable.image || '/table1.webp',
         description: this.newTable.description || this.selectedStory.description
       };
       this.campaigns.push(newCampaign);

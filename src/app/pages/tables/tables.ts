@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 interface Campaign {
@@ -19,7 +18,7 @@ interface Story {
 
 @Component({
   selector: 'app-tables',
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule],
   templateUrl: './tables.html',
   styleUrls: ['./tables.css']
 })

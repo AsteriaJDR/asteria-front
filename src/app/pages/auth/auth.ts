@@ -1,5 +1,5 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -18,7 +18,7 @@ import {
 
 @Component({
   selector: 'app-auth',
-  imports: [ReactiveFormsModule, LucideAngularModule, CommonModule],
+  imports: [ReactiveFormsModule, LucideAngularModule],
   templateUrl: './auth.html',
   styleUrl: './auth.css',
 })

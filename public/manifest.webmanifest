@@ -1,0 +1,9 @@
+{
+  "name": "Asteria",
+  "short_name": "Asteria",
+  "lang": "fr",
+  "start_url": "/",
+  "theme_color": "#053817",
+  "background_color": "#053817",
+  "display": "standalone"
+}

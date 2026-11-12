@@ -1,11 +1,12 @@
 <div class="tables-page">
+  <h1 class="sr-only">Mes tables</h1>
   <div class="actions-row">
     <button type="button" class="action-pill create" (click)="createTable()" aria-label="Créer une table">Créer une table</button>
     <button type="button" class="action-pill join" (click)="joinTable()" aria-label="Rejoindre une table">Rejoindre une table</button>
   </div>
 
   <div class="cards-grid">
-    @if (campaigns?.length) {
+    @if (campaigns.length) {
       @for (c of campaigns; track c.id) {
         <div
           class="card"
@@ -17,7 +18,7 @@
           (keydown.space)="openCampaign(c)"
           >
           <div class="card-overlay">
-            <h3 class="card-title">{{ c.title }}</h3>
+            <h2 class="card-title">{{ c.title }}</h2>
             <div class="card-footer">
               <span class="status">{{ c.status }}</span>
               <span class="players">{{ c.players }}</span>

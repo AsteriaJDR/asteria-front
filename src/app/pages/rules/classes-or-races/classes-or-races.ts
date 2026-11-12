@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { Class } from '../../../core/interfaces/class';
 import { Race } from '../../../core/interfaces/race';
 import { RulesService } from '../../../core/services/rules/rules-service';
 
 @Component({
   selector: 'app-classes-or-races',
-  imports: [],
+  imports: [NgOptimizedImage],
   templateUrl: './classes-or-races.html',
   styleUrl: './classes-or-races.css',
 })

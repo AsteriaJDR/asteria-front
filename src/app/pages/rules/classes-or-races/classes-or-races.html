@@ -1,7 +1,7 @@
 <div class="main">
     @if (classesOrRaces && classesOrRaces.length > 0) {
         <div class="image-and-icons">
-            <img [src]="'assets/' + classesOrRaces[selectedClassIndex].imageUrl" [alt]="classesOrRaces[selectedClassIndex].name" class="class-or-race-image">
+            <img [ngSrc]="'/assets/' + classesOrRaces[selectedClassIndex].imageUrl" width="720" height="720" priority [alt]="classesOrRaces[selectedClassIndex].name" class="class-or-race-image">
             <div class="icons">
                 @for(class of classesOrRaces; track class.id; let i = $index) {
                     <div class="hexagon-border" (click)="selectedClassIndex = i">

@@ -1,19 +1,20 @@
 import { Component, computed, signal } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 type Direction = 'forward' | 'backward';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink],
+  imports: [RouterLink, NgOptimizedImage],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 export class Home {
   readonly cards = [
-    '/assets/home/sunset-temple.png',
-    '/assets/home/dragon-castle.png',
-    '/assets/home/warrior-valley.png',
+    '/assets/home/sunset-temple.webp',
+    '/assets/home/dragon-castle.webp',
+    '/assets/home/warrior-valley.webp',
   ];
 
   private static readonly CYCLE_MS = 700;

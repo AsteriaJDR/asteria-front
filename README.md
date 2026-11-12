@@ -53,6 +53,11 @@ src/app/
 └── pages/           # une page par route (accueil, règles, tables, auth, profil, contacts)
 ```
 
+## Images
+
+On commite les images déjà optimisées (WebP, redimensionnées) dans `public/`.
+Les fichiers sources d'origine (non compressés) restent sur le Drive de l'équipe.
+
 ## Workflow git
 
 - Branche de travail : `dev`. Jamais de commit ni de push direct sur `main`.

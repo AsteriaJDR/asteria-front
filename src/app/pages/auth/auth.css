@@ -25,7 +25,7 @@
   height: 35rem;
   top: 45%;
   transform: translateY(-50%);
-  background: url('/assets/asur-misoa-bannerb5 1.png') center/cover no-repeat;
+  background: url('/assets/auth-background.webp') center/cover no-repeat;
   border-radius: 16px;
   overflow: hidden;
 }

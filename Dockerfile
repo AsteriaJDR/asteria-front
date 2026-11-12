@@ -4,6 +4,7 @@ COPY package*.json ./
 RUN npm ci
 COPY . .
 RUN npx ng build --configuration production
+RUN node scripts/generate-sitemap.mjs
 
 FROM nginx:alpine
 COPY --from=builder /app/dist/asteria-front/browser /usr/share/nginx/html

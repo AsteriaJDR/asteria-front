@@ -1,23 +1,35 @@
 import {Routes} from '@angular/router';
 import {authGuard} from './core/guards/auth-guard';
-import {Home} from './pages/home/home';
-import {Auth} from './pages/auth/auth';
-import {Tables} from './pages/tables/tables';
-import {Contacts} from './pages/contacts/contacts';
-import {Rules} from './pages/rules/rules';
-import {Classes} from './pages/rules/classes/classes';
-import {Races} from './pages/rules/races/races';
-import {Profile} from './pages/profile/profile';
 
 export const routes: Routes = [
   {path: 'home', redirectTo: '', pathMatch: 'full'},
-  {path: '', component: Home},
-  {path: 'tables', component: Tables, canActivate: [authGuard]},
-  {path: 'contacts', component: Contacts},
-  {path: 'auth', component: Auth},
-  {path: 'rules', component: Rules},
-  {path: 'rules/classes', component: Classes},
-  {path: 'rules/races', component: Races},
-  {path: 'profile', component: Profile, canActivate: [authGuard], data: {tab: 'profile'}},
-  {path: 'settings', component: Profile, canActivate: [authGuard], data: {tab: 'settings'}},
+  {path: '', loadComponent: () => import('./pages/home/home').then(m => m.Home)},
+  {
+    path: 'tables',
+    loadComponent: () => import('./pages/tables/tables').then(m => m.Tables),
+    canActivate: [authGuard],
+  },
+  {path: 'contacts', loadComponent: () => import('./pages/contacts/contacts').then(m => m.Contacts)},
+  {path: 'auth', loadComponent: () => import('./pages/auth/auth').then(m => m.Auth)},
+  {path: 'rules', loadComponent: () => import('./pages/rules/rules').then(m => m.Rules)},
+  {
+    path: 'rules/classes',
+    loadComponent: () => import('./pages/rules/classes/classes').then(m => m.Classes),
+  },
+  {
+    path: 'rules/races',
+    loadComponent: () => import('./pages/rules/races/races').then(m => m.Races),
+  },
+  {
+    path: 'profile',
+    loadComponent: () => import('./pages/profile/profile').then(m => m.Profile),
+    canActivate: [authGuard],
+    data: {tab: 'profile'},
+  },
+  {
+    path: 'settings',
+    loadComponent: () => import('./pages/profile/profile').then(m => m.Profile),
+    canActivate: [authGuard],
+    data: {tab: 'settings'},
+  },
 ];
